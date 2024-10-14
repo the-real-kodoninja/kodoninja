@@ -1,0 +1,75 @@
+NOTE 
+Q3-23 PUSH
+-- globalize kill logic including non sql port entries
+-- virtual gift cards
+-- remove duplicates (all)
+-- htacess
+-- post w/ wysywig
+-- wysywig save
+-- post photo view/upload
+-- user photo view/upload
+-- stripe / metamask signup payment (kodoninja)
+-- stripe / metamask checkout payment (kodospace)
+---------------------------------------------------
+-- scramble, compress code on every deploy
+-- remove all traces of emmanuel from kodoninja // ex/ youtube
+-- social media changes to site pages
+-- kodostore temp local inside kodoninja
+-- kodostore.com 
+
+Q3-23 PUSH
+v3.5 updates
+-- Connect to activity pub fediverse
+-- -- create feed
+-- -- all fedivese trffic should do masses for ad revenue and site traffic
+-- vanilla 5% code rewrite to Node.js/Coffee 
+-- simplify all css node/scss
+
+Q3-23 PUSH
+v4 updates 
+-- download user data FULL
+-- data upload, for deleted accounts or restoration of deleted post
+-- complete kodospace intergration
+-- add reason for deletion option & textarea
+-- post share
+-- Messages kodospace import
+-- post (photo, video, audio clip(copyright params lookup), file, emoji, giphy) upload
+-- all language translate (chat-gpt/bard)
+-- international url redirects w/ language
+-- kodobinder
+-- store products mass release
+
+Q4-23 PUSH
+v5 updates
+-- IOS(swift/python), Android(kotlin/python) app conversion & release (w/ chat-gpt/bard) 
+-- kodospace release (w/ chat-gpt/bard/freelance)
+-- -- will be the most simple & basic app l/ (threads)
+-- -- users in settings can toggle addons such as reels, stories, ...
+-- -- they can make it heavy or lite but even at its heaviest itll be build lite(dev)
+-- -- Anonynimity carry on feature
+-- -- can comment anonymous option
+
+Q4-23/Q1-24 PUSH
+-- -- can toggle features from the kodoverse (kodoninja, kodohealth, kodotrading, kodofilms, kodo...) 
+-- -- ie chart features from kodotrading
+-- -- ie health features from kodofitness
+
+Q1-24
+-- kodoverse platforms rollout
+-- -- convert to desired language using kodoninja code base (chat-gpt/bard/++)
+
+Q1-24/++ PUSH
+v6 updates
+-- kodocoin blockchain (eth) (w/ chat-gpt/bard/freelance)
+-- kodokitty full AI beta (w/ chat-gpt/bard/freelance)
+-- kodotoken blockchain (w/ chat-gpt/bard/freelance)
+-- -- convert tokens or give equivalent of tokens owned
+-- -- then full chain then on
+-- kodokitty NFT (w/ chat-gpt/bard/freelance)
+-- AI generated post / n/ social media
+
+
+v7 updates
+-- operated on web5 on the in house crypto chain (kodotoken/kodocoin) (w/ chat-gpt/bard/freelance)
+-- VR support
+-- all #kodoverse platforms should be released by this ppoint (w/ chat-gpt/bard/freelance)

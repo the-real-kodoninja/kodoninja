@@ -1,0 +1,37 @@
+{
+  "name": "kodoninja_of_the_kodoverse",
+  "version": "3.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "SET DEBUG=kodoninja:* & nodemon ./bin/www",
+    "server": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "kodokitty.ai",
+  "license": "ISC",
+  "dependencies": {
+    "@types/pg": "^8.10.2",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fastify": "^4.21.0",
+    "fs": "^0.0.1-security",
+    "node": "^20.5.0",
+    "node-pdo": "^0.0.3",
+    "pg": "^8.11.2",
+    "php-cgi": "^0.2.0",
+    "pillow": "^0.0.9",
+    "pug": "^3.0.2",
+    "pyodide": "^0.23.4",
+    "python-shell": "^5.0.0",
+    "requests": "^0.3.0",
+    "sphp": "^0.6.3",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

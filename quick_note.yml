@@ -1,0 +1,15 @@
+quick notes: 
+-- landding pages, IE: index,blog,forum,goal,... will be .py
+-- -- no sql manipulate AOY 
+-- -- hub for all logic node/.js, .php, .css
+-- -- -- just print php/py var's/includes/imports/addons
+-- sql connection and DB logic will be handled with .php/node.js
+
+-- handle image send with node to node   
+
+
+step 1 
+-- upload sql file 
+-- -- kodoninja postgresql
+-- -- kodostore mongodb
+-- establish a db connection to postgresql whith php/node
