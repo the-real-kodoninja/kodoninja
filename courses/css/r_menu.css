@@ -1,0 +1,10 @@
+.r_menu ul {
+    list-style: cjk-earthly-branch;
+}
+
+.r_menu ul span.main-li {
+    color: darkred;
+}
+
+.r_menu li {
+}

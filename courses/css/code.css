@@ -1,0 +1,42 @@
+code {
+    display:block;
+    background:#262626;
+    border:#CCC 1px solid;
+    border-radius:4px;
+    padding:10px;
+    line-height:1.7em;
+    overflow: auto;
+    font-family:"Courier New", Courier, monospace;
+    font-size:0.95em;
+    color: #fff;
+}
+
+.code-elem { 
+    color: #f00808; 
+}
+
+.code-str { 
+    color:#999; 
+}
+
+.code-comment { 
+    color: #BBB; 
+}
+
+.code-phptags { 
+    color:##F00000; 
+    font-weight:bold; 
+}
+
+.code-scripttags { 
+    color:#900; 
+}
+
+.code-styletags { 
+    color:#F0F; 
+} 
+
+.code-punctuation { 
+    color:#F60; 
+    font-weight:bold;
+}
