@@ -1,0 +1,12 @@
+ul.si_list li a {
+    color: darkred;
+}
+
+ul.si_list li {
+    list-style: cjk-ideographic;
+    margin: 10px 10px 0px;
+}
+
+ul.si_list li a:hover {
+    text-decoration: underline;
+}
