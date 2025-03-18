@@ -1,0 +1,83 @@
+.bnrHdr-Wpr {
+    width: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+}
+
+
+.hDr_mNu2-Wpr {
+    background-color: #e4e4e4;
+    border-bottom: 1px solid #eee;
+    height: 32px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: -28px 0px 0px;
+    z-index: 1;
+    position: relative;
+}
+
+.hDr_mNu2-Inr, .temp_bnr-Inr, .mNws-Inr {
+    margin: 0px auto;
+    width: 1000px;
+}
+
+.hDr_mNu2-Inr ul {
+    padding: 0px;
+}
+
+.hDr_mNu2-Inr ul li, .hDr_mNu2-Inr ul a li {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.hDr_mNu2-Inr ul a li:hover {
+    color: darkred;
+}
+
+
+.blog-vW small {
+    font-size: 13px;
+    color: #871e1f;
+}
+
+.blog-vW select {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 3px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ************* */
+/* banner header */
+/* ************* */
+
+.bnrHdr-Wpr {
+    background: rgb(61, 67, 71);
+    height: 145px;
+    top: 18px;
+    color: #fff;
+    position: absolute;
+}
+
+.bnrCnt {
+    padding: 20px;
+}
+
+.bnrTxt {
+    font-size: 20px;
+    margin: 50px 0px 0px;
+}
+
+.main_Wpr {
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+.mainVw2 {
+    margin-top: 115px;
+}

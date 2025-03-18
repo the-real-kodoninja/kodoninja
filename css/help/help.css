@@ -1,0 +1,44 @@
+.hpBdyWpr {
+    margin: 65px auto 0px;
+    width: 1000px;
+}
+
+input[type="search"]#schHLp, ul.frqAskQues li {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    letter-spacing: 1px;
+    padding: 20px;
+}
+
+input[type="search"]#schHLp {
+    width: 100%;
+}
+
+.hpBdyInr {
+    margin: 20px 0px 25px;
+}
+
+ul.frqAskQues {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.frqAskQues li {
+    margin: 12px 0px;
+    background-color: #fff;
+    padding: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+ul.frqAskQues li:hover {
+    background-color: #C2B280;
+}
+
+@media only screen and (max-width: 720px), only screen and (max-device-width: 720px) {
+    body .hpBdyWpr {
+        width: 100%;
+        margin: 20px auto 0px;
+    }
+}

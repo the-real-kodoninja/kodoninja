@@ -1,0 +1,76 @@
+body {
+  color: #393939;
+}
+
+
+
+.app1-Wpr {
+    height: auto;
+    border: 1px solid #e3e3e3;
+    border-radius: 6px;
+    left:0; right:0;
+    top:50px;
+    margin:auto;
+    max-width:100%;
+    max-height:100%;
+    overflow:auto;
+}
+
+.pad-T, button {
+    padding: 10px;
+}
+
+h2.logo-hDr2 {
+    text-align: center;
+    color: #fff;
+    margin: 15px 0px;
+}
+
+.app1-inpCntr {
+    margin: 0px 20px 0px 0px;
+}
+
+input, button {
+    width: 100%;
+    border: 1px solid #d7d7d7;
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 6px;
+    margin: 0px 0px 10px;
+}
+
+select {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: darkred;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #fff;
+    border: 1px solid darkred;
+    color: darkred;
+}
+
+button {
+    background-color: #fff;
+}
+
+.app1-Ftr {
+    border-top: 1px solid #e3e3e3;
+}
+
+.app1Ftr-Lnk {
+    margin: 10px 0px;
+}
+
+.app1Ftr-Lnk a {
+    color: #fff;
+    padding: 5px 2px 0px 0px;
+}

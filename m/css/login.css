@@ -1,0 +1,170 @@
+.usr_lgc1 {
+    top: 16px;
+    right: 5px;
+}
+
+.usr_lgc1 img {
+    height: 50px;
+    width: 50px;
+    margin: 0px 10px -15px 0px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* login logic */
+.usr_lgn {
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: rgba(135, 30, 31, 0.8);
+    color: #fff;
+    z-index: 6;
+}
+
+.usr_lgn form {
+    padding: 20px;
+    margin: 0px auto;
+}
+
+.usr_lgn form label {
+    display: block;
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+select, input[type="text"], input[type="password"], form.lgn_lgc input[type="submit"] {
+    border-radius: 6px;
+}
+
+input[type="text"], input[type="password"], form.lgn_lgc input[type="submit"] {
+    margin: 10px 0px 10px 0px;
+}
+
+form.lgn_lgc input[type="text"], form.lgn_lgc input[type="password"] {
+    width: 100%;
+    height: 25px;
+}
+
+select, input[type="text"], input[type="password"] {
+    background: #fff;
+    border: 1px solid #ccc;
+    height: 25px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 5px;
+}
+
+form.lgn_lgc button.nxt_sgn, form.mHdr-Frm button.nxt_sgn {
+    background: #3d4347;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+form.lgn_lgc button.nxt_sgn {
+    max-width: 300px;
+}
+
+form.lgn_lgc button.nxt_sgn:hover, form.mHdr-Frm button.nxt_sgn:hover {
+    background: rgba(61, 67, 71, 0.9);
+}
+
+form.lgn_lgc {
+  text-align: center;
+    line-height: 1.38;
+    font-weight: normal;
+    word-wrap: break-word;
+    direction: ltr;
+    font-size: 14px;
+    margin: 0px 10px 0px 0px;
+}
+
+form.mHdr-Frm input, form.mHdr-Frm button.nxt_sgn {
+    width: 97%;
+}
+
+/* signup popup */
+/* ************ */
+#lgnsgn_2 {
+    background: rgba(255, 255, 255,0.9);
+    color: #333;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+#lgnsgn_2 div:first-child {
+    margin-bottom: 20px;
+}
+
+/* *** Check Box *** */
+.container {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+
+.container:hover input ~ .checkmark {
+    background-color: #fff;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #fff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid darkred;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

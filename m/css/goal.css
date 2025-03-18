@@ -1,0 +1,13 @@
+.glPgBr_1 {
+  background-color: #f0f0f0;
+  margin: 5px auto;
+  border-radius: 6px;
+  border: 1px solid #dbd9d9;
+}
+
+.glPgBr_1 > div {
+  background-color: #C2B280;
+  text-align: center;
+  height: 20px;
+  border-radius: 6px;
+}

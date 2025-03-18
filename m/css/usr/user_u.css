@@ -1,0 +1,381 @@
+.bnrCnt {
+    padding: 10px;
+    margin: 0px 0px 0px;
+}
+
+.usrBdy-Hdr {
+    height: 25px;
+}
+
+.usrHdr-Wpr {
+    height: 110px;
+}
+
+.usrBdy-Hdr span {
+    padding: 2px 7px;
+    line-height: 25px;
+}
+
+.Uview {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.usrSel, .mini-pst_Rgt b, .usrBdy-Hdr span:hover, ul.dDmnu_1 li:hover, ul.dDmnu_2 li:hover {
+    color: darkred;
+}
+
+/* banner user logic */
+.bnrCnt img {
+    height: 80px;
+    width: 80px;
+    border: 1px solid #fff;
+}
+
+.bnrTxt-Hdr {
+    margin: 0px 10px 0px 90px;
+}
+
+.bnrTxt-Inr {
+    font-size: 15px;
+    word-spacing: 2px;
+    line-height: 20px;
+}
+
+.bnrTxt-Inr a, .OptDel1 {
+    color: #fff;
+}
+
+.bnrUsrnme {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.bnrUsrnme i {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    content: "\2713";
+    font-size: 14px;
+    padding: 3px 6px 0px 3px;
+    color: #fff;
+    background: none;
+}
+
+.bnrTxt-Usr {
+  margin: 0px 0px 0px 97px;
+}
+
+/* main logic */
+.main {
+    margin: 200px auto;
+    max-width: 1000px;
+}
+
+.Cnt_Bck {
+    padding: 0px;
+}
+
+/* user post */
+.usrPst-Wpr {
+    background: #fff;
+    margin: 0px 10px 0px 10px;
+    border: 1px solid #ccc;
+}
+
+.add-Pst-Wpr {
+    padding: 10px;
+    margin: 0px 0px 0px 17px;
+    height: auto;
+}
+
+.pstBtn2-Wpr {
+    margin: -9px 0px 0px 0px;
+}
+
+.pstBtn2 {
+    background: transparent;
+    padding: 7px 11px;
+    margin: -25px 0px 0px -58px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    color: #7e7e7e;
+}
+
+.pstBtn2:hover {
+    background: darkred;
+    color: #fff;
+}
+
+.usr_Pst-Wpr img {
+    height: 50px;
+    width: 50px;
+    float: left;
+    display: inline-block;
+    margin: 0px 7px 0px 0px;
+}
+
+.usr_Pst-Rgt {
+    height: 60px;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.vw-cmnt-Wpr2 {
+    padding: 0px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+}
+
+.vw-cmnt-PstW {
+    border-bottom: 1px solid #eee;
+    padding: 0px 0px 5px;
+}
+
+.add-reply3-Wpr {
+    width: 100%;
+    margin: 0px 0px 0px -5px;
+}
+
+.usr_Rply-Wpr {
+    border-bottom: 1px solid #ccc;
+}
+
+.usr_Rply-Wpr img, .usrPst-Wpr img {
+    float: left;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    margin: -5px 0px 0px 0px;
+}
+
+/* dropdown menu logic */
+ul.dDmnu_1, ul.dDmnu_2 {
+    list-style: none;
+    padding: 0px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    z-index: 1;
+}
+
+ul.dDmnu_1 li, ul.dDmnu_2 li {
+    padding: 3px 10px;
+    color: #333;
+}
+
+ul.dDmnu_1 {
+    margin: 20px 0px 0px -71px;
+}
+
+
+ul.dDmnu_2 {
+    margin: 6px 0px 0px -41px;
+}
+
+/* left logic */
+.lft-lgc, .mini-pst_Desc {
+    width: 100%;
+}
+
+.lft-lgc {
+    max-width: 615px;
+}
+
+.pad-T5 {
+    padding: 5px;
+}
+
+
+.bnrHdr-Wpr {
+    top: 83px;
+}
+
+.lft-lgc, .Cnt_Bck, .bnrCnt img {
+    border-radius: 6px;
+}
+
+.usrConts-Wpr, .usrConts-Wpr2 {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.Cnt_Inr, .pad-T, .usrConts-Wpr, .mini-pst_Wpr {
+    padding: 10px;
+}
+
+.usrHdr {
+    background: #fff;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.usrConts_Inr, .bnrCnt img {
+    display: inline-block;
+}
+
+.usrConts_Inr {
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+.bnrCnt img, .usrConts-Wpr img {
+    float: left;
+}
+
+.usrConts-Wpr img {
+    height: 50px;
+    width: 50px;
+    margin: 0px 5px 0px 0px;
+}
+
+.bnrBtn i::after, .bnrBtn2 i::after {
+    content: "...";
+    padding: 2px 6px;
+    font-size: 21px;
+    font-weight: bold;
+    border-radius: 6px;
+    line-height: 2px;
+    height: 13px;
+    float: right;
+}
+
+.bnrBtn i::after {
+    color: #fff;
+    border: 1px solid #fff;
+    margin: -18px 0px 14px;
+}
+
+.bnrBtn2 i::after {
+    color: #333;
+    border: 1px solid #333;
+    margin: 0px 3px 0px 0px;
+}
+
+.usrCont_Rgt button {
+    padding: 6px 12px;
+    color: #333;
+    border: none;
+    cursor: pointer;
+}
+
+.usrCont_Rgt button {
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+}
+
+.usrCont_Rgt {
+    width: auto;
+    margin: 0px 0px 0px 5px;
+    font-size: 14px;
+}
+
+.usrCont_Rgt div, b.notiPnl_Ttl, .Trnd-lft-Txt  {
+    display: block;
+}
+
+mini-pst_Wpr {
+    border-bottom: 1px solid #ccc;
+}
+
+.usrTgl-Wpr {
+    overflow:hidden;
+    background: #fff;
+}
+
+.usrTgl-Wpr div {
+    padding: 10px;
+    color: #333;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+#usrTgl_1ax {
+    border-right: 1px sollid #ccc;
+    float:left;
+    width:50%;
+    background-color: darkred;
+    color: #fff;
+}
+
+#usrTgl_1bx {
+    overflow:hidden;
+}
+
+/* mini post */
+.mini-pst_Wpr {
+    height: 50px;
+}
+
+.mini-pst_Wpr img {
+    height: 50px;
+    width: 70px;
+}
+
+.mini-pst-WprX {
+    margin: -55px 0px 0px 75px;
+}
+
+.mini-pst_Rgt{
+    margin: 0px 0px 0px 5px;
+}
+
+.mini-pst_Rgt, .mini-pst_Stp, .mini-pst_Rgt b  {
+    width: 100%; 1
+}
+
+
+.mini-pst_Rgt b, .mini-pst_Desc, .mini-pst_Stp, b.notiPnl_Ttl, .Trnd-lft-Txt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+}
+
+.mini-pst_Rgt b, .mini-pst_Stp, b.notiPnl_Ttl, b.notiPnl_Ttl, .Trnd-lft-Txt {
+    white-space: nowrap;
+}
+
+.mini-pst_Desc, .OptDel1 {
+    font-size: 14px;
+}
+
+.mini-pst_Desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.OptWpr1 {
+    width: 30px;
+    margin: -39px 8px 0px 0px;
+
+}
+
+.OptDel1 {
+    padding: 5px;
+    text-indent: 9px;
+    width: 60px;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/* forum logic */
+.mini-pst_Wpr2 {
+    margin: 0px 0px 0px 90px;
+}

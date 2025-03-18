@@ -1,0 +1,40 @@
+
+/* share logic */
+ul.scl-share {
+    margin: 0px 0px 10px 0px;
+    padding: 0;
+}
+
+ul.scl-share li {
+    display: inline-block;
+    padding: 5px 17px;
+    width: 0px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-indent: -5px;
+}
+
+ul.scl-share li:hover {
+    opacity: 0.9;
+}
+
+li.icn-fb {
+    background-color: #3e5c98;
+}
+
+li.icn-tw {
+    background-color: #29a7de;
+}
+
+li.icn-pi {
+    background-color: #c3282d;
+}
+
+li.icn-li {
+    background-color: #4293cc;
+}
+
+li.icn-gp {
+    background-color: #fd6e4c;
+}

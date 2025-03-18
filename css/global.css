@@ -1,0 +1,98 @@
+@import url('user__post.css');
+
+@font-face{
+  font-family: "njnaruto";
+  src: url('font/ninja_naruto/njnaruto.ttf') format('truetype'),
+  url('font/ninja_naruto/njnaruto.ttf'); /* IE */
+}
+
+html {
+ font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
+  text-rendering: optimizeLegibility;
+  color: #333;
+}
+
+body {
+    margin: 0px auto;
+    color: #fff;
+    background-color: #3d4347;
+}
+
+a, ul.usrPstX li:hover {
+    color: darkred;
+}
+
+.pad-10 {
+    padding: 10px;
+}
+
+.di, .dN {
+    display: inline-block;
+}
+
+.db, .dB {
+    display: block;
+}
+
+.fl, .fL {
+    float: left;
+}
+
+.fr, .fR {
+    float: right;
+}
+
+.pf, .pF {
+    position: fixed;
+}
+
+.pa, .pA {
+    position: absolute;
+}
+
+.glbl__bdyWpr {
+    width: 100%;
+    max-width: 1000px;
+    margin: 175px auto 30px;
+}
+
+/* up vote down vote start */
+/* arrow logic */
+.glbl__udLgc-Wpr {
+    width: 10px;
+    margin: -4px 13px 0px 10px;
+}
+
+i.glbl__udLgc-Arw {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+i.glbl__udLgc-Arw:hover {
+    border-color: darkred;
+}
+
+.glbl__udLgc-Wpr span {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0px 0px 0px -6px;
+}
+/* up vote down vote end */
+
+/* background color */
+.bck__wht {
+    background-color: #fff;
+}

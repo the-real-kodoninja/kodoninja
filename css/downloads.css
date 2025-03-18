@@ -1,0 +1,116 @@
+@font-face {
+  font-family: njnaruto;
+  src: url('font/ninja_naruto/njnaruto.ttf');
+}
+
+/* header */
+.dlwn_TopWpr {
+  background-color: #C2B280;
+  width: 100%;
+  height: 100px;
+  margin: 50px 0px 0px;
+}
+
+.dlwn_TopWpr h1 {
+  color: #444;
+   font-family: njnaruto;
+   text-align: center;
+}
+
+.dlwn_TopWpr .dv1 {
+  padding: 10px 0px 10px;
+}
+
+/* content download */
+.dlwn_MnWpr {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+  width: 1000px;
+  margin: 20px auto;
+}
+/* /// */
+.dlwn_PrdWpr {
+  background: #fff;
+  padding: 5px;
+  width: 310px;
+  height: 120px;
+  color: #333;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin: 0px 0px 10px;
+  display: inline-table;
+}
+
+.dlwn_PrdWpr, img.prd_v1, .prd_v3 button {
+  border-radius:  10px;
+}
+
+img.prd_v1 {
+  width: 92px;
+  max-height: 118px;
+}
+
+.dlwn_PrdRgt {
+  width: 210px;
+  float: right;
+}
+
+.dlwn_PrdRgt ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.dlwn_PrdRgt ul li {
+  list-style: none;
+  display: inline-block;
+  font-size: 11px;
+}
+
+.dlwn_PrdRgt ul li:after {
+  content: " ●";
+  font-size: 7px;
+  margin: -2px 0px;
+}
+
+.dlwn_PrdRgt ul li:last-child:after {
+  content: "";
+}
+
+.dlwn_PrdRgt ul li span:nth-child(1) {
+  color: green;
+  font-weight: 600;
+}
+
+.PrdTtl, .PrdDes {
+  font-size: .8rem;
+}
+
+.PrdTtl {
+  font-weight: bold;
+}
+
+.PrdDes {
+  margin: 5px 0px;
+}
+
+.prd_v3 button {
+  width: 48%;
+  margin: 3px 0px;
+  padding: 4px;
+  background-color: #e9e9ed;
+  border: 1px solid #c8c8c8;
+  font-size: 12px;
+}
+
+.prd_v3 button:hover {
+  background-color: #c2b280;
+  color: #111;
+}

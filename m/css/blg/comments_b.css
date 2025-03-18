@@ -1,0 +1,141 @@
+/* comments */
+textarea, input {
+    font-family: sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+.vw-bar, .vw-cmnt-Wpr {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+}
+
+.tiny {
+    font-size: 12px;
+    color: #333;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.tiny:hover, .selx:hover {
+    color: #871e1f;
+}
+
+.vw-cmnt-Wpr {
+    height: auto;
+    padding: 0px 0px 10px 0px;
+}
+
+.add-cmnt-Wpr {
+    padding: 10px 10px 0px 10px;
+    margin: 0px 0px 0px 16px;
+    margin-bottom: 5px;
+    height: auto;
+}
+
+.add-cmnt {
+    margin: 0px 0px 0px -18px;
+}
+
+.vw-cmnt-Hdr, textarea.add-cmnt {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+textarea.add-cmnt, textarea.add-reply, textarea.add-reply3 {
+    width: 100%;
+    height: 18px;
+    border: none;
+    border-radius: 6px;
+    min-height: 18px;
+    max-height: 18px;
+    text-align: justify;
+    text-indent: 40px;
+    vertical-align: top;
+    transition: all 0.3s linear;
+}
+
+textarea.add-cmnt, textarea.add-cmnt:focus {
+
+}
+
+.add-reply-Wpr {
+    margin: 5px 0px 0px 28px;
+}
+
+.add-reply {
+    margin: 0px 0px 0px -18px;
+}
+
+
+
+textarea.add-reply, textarea.add-reply:focus {
+}
+
+input[type="search"]:focus, textarea.add-cmnt, textarea.add-cmnt:focus, textarea.add-reply:focus, input[type=text]:focus, textarea:focus {
+    outline: medium none;
+}
+
+input[type="search"]:focus, textarea.add-cmnt:focus, textarea.add-reply:focus, input[type=text]:focus, textarea:focus {
+    border-color: #871e1f;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.075) inset, 0px 0px 5px rgba(135,30,31, 0.5);
+    transition: all 0.3s linear;
+}
+
+textarea.add-cmnt:focus, textarea.add-reply3:focus {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+textarea.add-reply:focus, textarea.add-reply3:focus {
+    height: 70px;
+    min-height: 70px;
+    max-height: 70px;
+}
+
+input.add-cmnt-btn[type="submit"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input.add-cmnt-btn[type="submit"]:hover, .rply_x:hover, .cmnt-act:hover {
+    color: #871e1f
+}
+
+.vw-cmnt-Pst {
+    padding: 10px 10px 0px 10px;
+}
+
+.vw-cmnt-Pst img {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.vw-cmnt-txt .time {
+    color: darkred;
+    float: left;
+    margin: -18px 0px 0px 0px;
+    font-size: 13px;
+}
+
+.vw-cmnt-txt {
+
+}
+
+.vw-cmnt-Ftr {
+    margin: 0px 10px 0px 10px;
+}
+
+.rply-Pst {
+    margin-left: 20px;
+}
+
+.cmnt-act {
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}

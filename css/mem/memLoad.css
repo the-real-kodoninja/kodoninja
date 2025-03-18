@@ -1,0 +1,100 @@
+html,body {
+    background-color: #e7e7e7;
+}
+.compCnt_Wrp {
+    background-color: #e7e7e7;
+    padding: 60px;
+}
+.compCnt_Wrp h1, .compCnt_Wrp h4, .x__1Wpr h2 {
+    text-align: center;
+}
+table.x_1, .x__1Wpr {
+    margin: 50px auto;
+    font-size: 1.6em;
+    width: 82%;
+    padding: 25px;
+    background-color: #fff;
+    border-top: 5px solid darkred;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 0px solid #ccc;
+    max-width: 700px;
+}
+table.x_1 th:nth-child(1) { 
+    background-color: none; 
+}
+table.x_1 tr {
+    text-align: left;
+    padding: 20px;
+}
+table.x_1 tr td, .smTxt {
+    font-size: 15px;
+}
+table.x_1 th td {
+    padding: 20px;
+}
+/* table.x_1 tbody tr {
+border-bottom: ;
+}
+
+table.x_1 tbody tr:nth-of-type(even) {
+background-color: ;
+} */
+
+table.x_1 tbody tr:last-of-type {
+border-bottom: 2px solid #bebebe;
+}
+table.x_1 tbody tr.active-row {
+font-weight: bold;
+color: #009879;
+}
+.chk_grey {
+    color: #b0b0b0;
+}
+.chk_1 {
+    color: #bfa34c;
+}
+.chk_2 {
+    color: darkred;
+}
+.chk_ttl {
+    margin: 0px 20px 0px 0px;
+}
+button.x_1Btn {
+    margin: 10px 0px 15px;
+}
+table.x_1 button, button.x_1Btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px
+}
+table.x_1 button.sel {
+    background-color: darkred;
+    color: #fff;
+}
+.mem_ftr {
+    text-align: center;
+}
+button.x_1Btn:hover {
+    background-color: #bfa34c;
+    color: #333;
+}
+.x__1Wpr, a.x_1Lnk {
+    font-size: 16px;
+}
+.x_linkWpr {
+    margin: 15px 0px 0px;
+}
+a.x_1Lnk {
+    display: inline-block;
+}
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="date"], select {
+    background: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    height: 40px;
+    border-radius: 6px;
+    margin: 10px 0px 10px -6px;
+    width: 100%;
+}

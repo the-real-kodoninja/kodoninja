@@ -1,0 +1,117 @@
+a {
+    color: darkred;
+}
+
+.frm_main {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 95px 0px 0px;
+}
+
+.main_Wpr {
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+.mFr_L, .mFr_L2 {
+    width: 795px;
+}
+
+.mFr_T {
+    margin: 0px 0px 5px;
+    width: 100%;
+}
+
+.mFr_T a {
+    color: darkred;
+    margin: 0px 5px 0px;
+}
+
+.mFr_L, .mFr_L2 {
+    margin: 0px 10px 0px 0px;
+}
+
+/* thread post logic */
+.thrd-Wpr div:first-child {
+    padding: 10px 10px 10px 5px;
+}
+
+.thrd-Wpr div:first-child img {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    float: left;
+}
+
+.thrd-Wpr div:first-child div {
+    display: inline-block;
+    margin: 0px 3px 0px;
+}
+
+.thrd-Wpr div:first-child div div:nth-child(1), a.thrd-Tle {
+    color: #4e4e4e; 
+    font-size: 16px;
+    padding: 0px;
+    text-decoration: none;
+}
+
+.thrd-Wpr div:first-child div div:nth-child(1) a.thrd-Tle {
+    font-weight: 600;
+}
+
+.thrd-Wpr div:first-child div div:nth-child(2) {
+    display: block;
+    font-size: 13px;
+}
+
+.thrd-Wpr div:first-child div div:nth-child(3) {
+    font-size: 14px;
+}
+
+.thrd-Wpr div:first-child div div small {
+    color: #444;
+}
+
+/* arrow logic */
+.trCnt-Wpr {
+    width: 10px;
+    margin: -4px 13px 0px 10px;
+}
+
+i.trCnt-Arw {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+i.trCnt-Arw:hover {
+    border-color: darkred;
+}
+
+.trCnt-Wpr span {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0px 0px 0px -7px;
+}
+
+/* right logic */
+
+
+
+
+footer {
+    width: 100%;
+}

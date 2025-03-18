@@ -1,0 +1,159 @@
+/* mod l */
+.bFltr-mod1 {
+    margin: 0px 0px 10px 0px;
+}
+.bFltr-Ctr h4 {
+    margin: 0px 0px 10px;
+}
+
+.mod1a-Wpr {
+    width: 300px;
+    border: 1px solid #d2d2d2;
+    padding: 0px;
+    background-color: #fff;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 0px 10px 20px 10px;
+}
+.mod1a-1 {
+    border-bottom: 1px solid #999;
+    padding: 5px;
+}
+
+.mod1a-1 span a:nth-child(2) {
+    margin: 0px 0px 0px 22px;
+}
+
+.mod1a-1 span:nth-child(1) img {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    background-position: center;
+    margin: 0px 1px 0px 0px;
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #999;
+}
+
+.mod1a-1 span:nth-child(2) {
+    float: right;
+}
+
+@keyframes placeHolderShimmer {
+    /*https://codepen.io/hijiangtao/pen/VBEvMW */
+  0% {
+    background-position: -800px 0
+  }
+  100% {
+    background-position: 800px 0
+  }
+}
+
+.mod1a-2, .mod1a-2 img {
+    width: 100%;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 150px;
+    min-width: 150px;
+    height: 150px;
+}
+
+.mod1a-2 img, .mod1a-1 span:nth-child(1) img {
+    background-color: #fff; 
+    /*https://codepen.io/hijiangtao/pen/VBEvMW */
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #bbbbbb 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+}
+
+ 
+.mod1a-2 img {
+    border: none;
+    height: 70px;
+    position: relative;
+}
+
+.mod1a-2 .mod-yt {
+    position: absolute;
+    margin: -110px 0px 0px 100px;   
+}
+
+.mod-yt {
+    /*https://codepen.io/injms/pen/rNOOYY */
+  background: #8b0000;
+  border-radius: 50% / 10%;
+  color: #FFFFFF;
+  font-size: 2em; /* change this to change size */
+  height: 2em;
+  margin: 20px auto;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-indent: 0.1em;
+  transition: all 150ms ease-out;
+  width: 3em;
+}
+
+.mod-yt:hover {
+  background: rgba(164, 7, 7, 0.75);
+    cursor: pointer;
+}
+
+.mod-yt::before { 
+  background: inherit;
+  border-radius: 5% / 50%;
+  bottom: 9%;
+  content: "";
+  left: -5%;
+  position: absolute;
+  right: -5%;
+  top: 9%;
+}
+
+.mod-yt::after {
+  border-style: solid;
+  border-width: 1em 0 1em 1.732em;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.75);
+  content: ' ';
+  font-size: 0.55em;
+  height: 0;
+  margin: -1em 0 0 -0.75em;
+  top: 50%;
+  position: absolute;
+  width: 0;
+}
+
+.mod1a-3 {
+    margin: 5px 0px;
+    padding: 5px;
+    height: 115px;
+    min-height: 115px;
+    max-height: 115px;
+    overflow: hidden;
+}
+
+.mod1a-3 a {
+    color: #333;
+}
+
+.mod1a-3 a:hover {
+    color: darkred;
+}
+
+.mod1a-3 div:nth-child(1) {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0px 5px 0px;
+    padding: 0px;
+}
+
+.mod1a-3 div:nth-child(2) {
+    margin: 5px 0px 0px; 
+    padding: 0px 5px 0px 5px;
+}

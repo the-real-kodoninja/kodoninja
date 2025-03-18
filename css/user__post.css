@@ -1,0 +1,25 @@
+.glbl__usrpSt-Hdr {
+
+}
+
+.glbl__usrpSt-Img_1 {
+    width: 55px;
+    height: 55px;
+    float: left;
+    display: inline-block;
+    margin: 0px 7px 0px 0px;
+    background-repeat: none;
+}
+
+.glbl__usrpSt-cnTr a {
+    color: darkred;
+}
+
+.glbl__usrpSt-cnTr {
+    cursor: pointer;
+}
+
+.glbl__usrpSt-cnTr:hover {
+    background-color: #f5f5f5;
+    border: 1px solid #f4f4f4;
+}

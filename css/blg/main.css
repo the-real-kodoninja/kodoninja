@@ -1,0 +1,398 @@
+.blg_main, .blg_main2 {
+    width: 1000px;
+}
+
+.blg_main {
+    margin: 0px auto;
+}
+
+.blg_main2 { /*  ??? */
+    margin: 185px auto;
+}
+
+.lft-lgc2 {
+    max-width: 730px;
+}
+
+/* top blogs */
+div.pad-T2 {
+    padding: 20px;
+}
+
+h3.trnd-Hdr {
+    color: #871e1f;
+    margin: 0px 0px 10px;
+}
+
+.blg-Trnd-Wpr {
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+}
+
+.blg-Trnd-lft {
+
+}
+
+img.trnd-img1 {
+    width: 422px;
+    height: 290px;
+}
+
+.Trnd-lft-Ftr {
+    width: 402px;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    height: auto;
+    margin: -67px 0px 0px;
+}
+
+.trnd-fkr {
+    background: #f4f4f4;
+    color: #444;
+    padding: 3px 6px;
+    font-family: montserrat;
+    font-weight: 500;
+}
+
+.Trnd-lft-Txt {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 5px 0px 0px;
+}
+
+.source1 {
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    margin: 0px 0px 0px;
+}
+
+.clip1, .clip1b {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.clip1 {
+    white-space: nowrap;
+}
+
+.Trnd-max1 {
+	max-width: 275px;
+}
+
+.blg-Trnd-rgt {
+    margin-left: 10px;
+}
+
+.Trnd-max2, .trnd-Ttl  {
+	max-width: 235px;
+}
+
+.Trnd-rgt-Cnt {
+    width: 100%;
+    margin: 0px 5px 20px 0px;
+    display: inline-block;
+}
+
+.Trnd-rgt-Cnt img {
+    display: inline-block;
+    width: 230px;
+    height: 142px;
+    border: 1px solid #e1e1e1;
+    text-align: center;
+}
+
+.Trnd-rgt-Txt b {
+    display: block;
+}
+
+ol.Pnl_lst {
+    margin: 0px 0px 0px 18px;
+    padding: 0px;
+}
+
+ol.Pnl_lst a li {
+    padding: 5px 0px 5px 0px;
+}
+
+.bnrTxt {
+    z-index: 1;
+    position: relative;
+}
+
+.bnrTxt i::after {
+    content: '/';
+}
+
+.bnrTxt a i {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bnrTxt a i:hover {
+    text-decoration: none;
+}
+
+/* *********** */
+hr.Pnl_Sep {
+    border: 2px solid darkred;
+    border-radius: 6px;
+    width: 100%;
+}
+
+ul.cNt-Hsh {
+    margin: 10px 0px 0px;
+    padding: 0px;
+}
+
+ul.cNt-Hsh li, ul.cNt_ele li {
+    display: inline-block;
+    font-size: 13px;
+}
+
+.Pnl_Sep {
+    margin: 30px 0px;
+}
+
+
+.cNt-Hdr img, .Zb-Wpr img {
+    float: left;
+    display: inline-block;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.cNt-Hdr h2 {
+    margin: 0px 0px 12px -18px;
+    font-weight: bold;
+    font-size: 22px;
+    color: darkred;
+    margin: 0px 0px 5px 0px;
+    padding: 0px;
+    width: 550px;
+    display: block;
+}
+
+.cNt-Hdr a, .cNt-Hsh a, .Zb-Wpr a {
+    color: darkred;
+}
+
+.bck_wht {
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    padding: 10px;
+}
+
+.blg-table caption {
+    margin: 15px 0px 8px;
+}
+
+.blg-table caption, .vW-title {
+    background-color: transparent;
+    color: #871e1f;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.blg-table caption, .vw-table caption, h3.trnd-Hdr {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.vw-table caption {
+    margin-bottom: 30px;
+}
+
+.vw-table td {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+}
+
+.blg-table td {
+    height: 160px;
+    width: 353px;
+}
+
+.blg-table td.coltitle {
+    height: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.blog-space {
+    margin-bottom: 15px;
+}
+
+.blog-space img {
+    width: 100%;
+    height: 210px;
+}
+
+.blog-space div {
+    text-align: justify;
+    vertical-align: top;
+    height: 100%;
+    padding: 0px 5px 0px 5px;
+    margin: -5px 0px 0px 0px;
+}
+
+.rgt-lgc, .content img, .top-Hdr {
+    width: 250px;
+    height: auto;
+}
+
+.time, .author, .date {
+    font-size: 13px;
+}
+
+.author, .author a {
+    color: darkred;
+}
+
+button.vW-blog {
+    background-color: #f0f0f0;
+    border: 1px solid #871e1f;
+    color: #871e1f;
+    width: 100%;
+    letter-spacing: 1px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    bottom: 0;
+    margin: 5px 0px 0px 5px;
+    cursor: pointer;
+}
+
+button.vW-blog:hover {
+    background-color: darkred;
+    color: #fff;
+}
+
+.blog-Nav {
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.blog-Nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.blog-Nav ul a li {
+    display: inline-block;
+    padding: 3px 6px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #333;
+}
+
+.sel_li {
+    background: darkred;
+    color: #fff;
+}
+
+.blog-Nav ul a li:hover {
+    color: darkred;
+    text-decoration: none;
+}
+
+.blgCat-Hdr {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#d_output img {
+    width: 100%;
+}
+
+/* ********************* */
+/* ********************* */
+/* view logic */
+/* ********************* */
+/* ********************* */
+.mainVw {
+    margin-top: 20px;
+}
+.Cnt_Bck {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.lft-lgc {
+    width: 710px;
+    max-width: 710px;
+}
+
+.top-Hdr {
+    height: 320px;
+    width: 688px;
+}
+
+
+.vw-desc {
+    margin: 20px auto;
+    line-height: 2.1rem;
+}
+
+.vw-bar {
+    height: auto;
+    width: 710px;
+    margin: 20px 0px 0px 0px;
+    border-radius: 6px;
+}
+
+.vw-bar-Inr {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.vw-bar, .vw-cmnt-Wpr, .extras_Wpr {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+}
+
+.rl_1a {
+    margin: 15px 0px 0px;
+}
+
+.rl_1a h5 {
+    margin: 10px 0px 0px;
+}
+
+.rl_1c, .rl_1c2 {
+    margin: 10px 0px;
+}
+
+.rl_1c2 {
+    height: 206px;
+    overflow: none;
+}
+
+.rl_1c img, .rl_1c2 img {
+    width: auto;
+    height: 95px;
+}
+
+.rl_1d {
+    width: 91px;
+    height: 101px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+
+/* ********************* */
+/* ********************* */
+/* Extras logic */
+/* ********************* */
+/* ********************* */

@@ -1,0 +1,67 @@
+.hDr_mNu2-Wpr {
+    background-color: #e4e4e4;
+    border-bottom: 1px solid #eee;
+    height: 30px;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.hDr_mNu2-Inr {
+    margin: 0px auto;
+}
+
+.hDr_mNu2-Inr ul {
+    margin: 5px 0px 0px 0px;
+    padding: 0px;
+}
+
+.hDr_mNu2-Inr ul li, .hDr_mNu2-Inr ul a li {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.hDr_mNu2-Inr ul a li:hover {
+    color: darkred;
+}
+
+
+.blog-vW {
+    margin: 12px 0px 0px 0px;
+}
+
+.blog-vW small {
+    font-size: 13px;
+    color: #871e1f;
+}
+
+.blog-vW select {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 3px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ************* */
+/* banner header */
+/* ************* */
+
+.bnrHdr-Wpr {
+    background: rgba(135, 30, 31, 1);
+    height: 120px;
+    top: 80px;
+    color: #fff;
+    position: absolute;
+}
+
+.bnrCnt {
+    padding: 20px;
+}
+
+.bnrTxt {
+    font-size: 20px;
+    margin: 50px 0px 0px;
+}

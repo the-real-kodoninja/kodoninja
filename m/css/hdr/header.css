@@ -1,0 +1,252 @@
+.w100, .header-Wpr, .mNu-mx span, .mNu-my, .sch-Wpr, input.sch[type="search"], .schDrp-Wpr, ul.schDrp-Rsl, li.schRsl-Wpr, li.schRsl-Wpr3 {
+    width: 100%;
+}
+
+.header-Wpr {
+    height: 50px;
+    background: #3d4347;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.mNu-mx {
+    display: inline-block;
+    position: relative;
+    height: 25px;
+    width: 30px;
+    margin: 2px 0px 0px 4px;
+}
+
+.mNu-mx span {
+    height: 3px;
+    width: 100%;
+    margin: 5px -4px;
+    display: block;
+}
+
+.mNu-xx span {
+    background-color: darkred;
+}
+
+.mNu-ux span {
+    background-color: #fff;
+}
+
+.mNu-ux ul {
+    position: absolute;
+    list-style: none;
+    margin: 10px 0px 0px -30px;
+    padding: 0px;
+    background-color: #fff;
+    color: #333;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.mNu-ux ul li {
+    padding: 5px 12px;
+}
+
+.mNu-my {
+    width: 250px;
+    height: 100%;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    z-index: 5;
+    color: #fff;
+}
+
+.mNu-my ul.lftPnl-Ul1, ul.dl_nav {
+    margin: 0px;
+    padding: 0px;
+    background: #3d4347;
+}
+
+.mNu-my ul.lftPnl-Ul1 a li {
+    display: inline-block;
+    color: #fff;
+    padding: 10px 0px;
+    width: 100%;
+    text-indent: 15px;
+}
+
+.mNu-sel, .mNu-my ul.lftPnl-Ul1 a li:hover {
+    background-color: #923334;
+}
+
+.logoX {
+    background-image: url('../../../logo/logo.svg');
+    height: 34px;
+    width: 27px;
+    background-size: 25px auto;
+    background-repeat: no-repeat;
+    margin: 8px 0px 0px 4px;
+}
+
+.sch-Wpr {
+    margin: 7px -50px 0px -5px;
+}
+
+.sch-Wpr2 {
+    margin: 0px 40px 0px 40px;
+}
+
+.sch-Bdy {
+    height: 30px;
+    width: 30px;
+    z-index: 2;
+    position: absolute;
+    margin: 0px 0px 0px 45px
+}
+
+input.sch[type="search"], .popView {
+    background-color: #fff;
+}
+
+input.sch[type="search"] {
+    text-indent: 38px;
+    height: 32px;
+    border: 0px;
+    border-radius: 4px;
+}
+
+.schGo-Wpr {
+  float: right;
+  margin: -30px 30px 0px 0px;
+}
+
+.schGo, .schRsl-type, .schRsl-type3 {
+    background: #c58080;
+    color: #fff;
+    cursor: pointer;
+}
+
+.schGo {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    /* margin: 35px 0px 0px -29px; */
+    z-index: 1;
+}
+
+.schGo:hover, .schRsl-type:hover, .schRsl-type3:hover {
+    background: darkred;
+}
+
+.schGo b {
+    margin: 3px 0px 0px 8px;
+    padding: 0px 5px 0px 0px;
+    line-height: 26px;
+}
+
+/** dropdon search logic **/
+.schDrp-Wpr {
+    margin: -20px 0px 0px -2px;
+    z-index: 8;
+}
+
+.schDrp-Wpr2 {
+    margin: 0px 0px 0px 42px;
+}
+
+ul.schDrp-Rsl {
+    background: #fff;
+    color: #333;
+    border-radius: 0px 0px 6px 6px;
+    border: 1px solid #e1e1e1;
+    border-top: none;
+    height: auto;
+    max-height: 350px;
+    padding: 5px 0px 0px;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: none;
+}
+
+li.schRsl-Wpr, li.schRsl-Wpr3 {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 5px;
+    line-height: 20px;
+}
+
+.schRsl-Rgt {
+    margin: 0px 0px 0px 5px;
+}
+
+div.schRsl-Abt {
+    font-size: 14px;
+    color: #333;
+}
+
+li.schRsl-Wpr img, li.schRsl-Wpr3 img {
+    border: 1px solid #e1e1e1;
+}
+
+li.schRsl-Wpr img, li.schRsl-Wpr3 img {
+  overflow: hidden;
+}
+
+li.schRsl-Wpr img {
+    width: 50px;
+    height: 30px;
+}
+
+li.schRsl-Wpr3 img {
+    width: 50px;
+    height: 50px;
+}
+
+li.schRsl-Wpr3 {
+    min-height: 53px;
+}
+
+.schRsl-Ttl {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+}
+
+.schRsl-Ttl {
+    width: 225px;
+    font-size: 15px;
+}
+
+.schRsl-type, .schRsl-type3 {
+    padding: 1px 6px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.schRsl-type {
+    margin: 24px 5px 0px 0px;
+}
+
+.schRsl-type3 {
+    margin: 37px 5px 0px 0px;
+}
+
+/* header image */
+.glbl_uAHdr {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    border: 2px solid #fff;
+    margin: 6px 5px 0px 0px;  
+    background-size: cover;
+  }
+
+  .logoXA, .glbl_uAWpr {
+    z-index: 3;
+    position: relative;
+  }
+
+
+
+
