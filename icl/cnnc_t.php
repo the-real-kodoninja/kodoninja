@@ -1,11 +1,11 @@
 <?php
 Class __xX_cnct_x___ {
     // kodoninja
-    private $SQL__pdo_1 = "mysql:host=localhost;dbname=u825482285_kodoninja";
+    private $SQL__pdo_1 = "pgsql:host=localhost;dbname=u825482285_kodoninja";
     private $SQL__pth_1 = "u825482285_kodoninja";
     private $SQL__pas_1 = "Cmyk.7625.KNkn";
     // kodostore
-    private $SQL__pdo_2 = "mysql:host=localhost;dbname=u825482285_kodostore";
+    private $SQL__pdo_2 = "pgsql:host=localhost;dbname=u825482285_kodostore";
     private $SQL__pth_2 = "u825482285_kodoverse";
     private $SQL__pas_2 = "Cmyk.7625.KSks";
     //
