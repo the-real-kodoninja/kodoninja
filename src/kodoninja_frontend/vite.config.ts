@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  root: 'src', // Root where index.tsx and index.html are located
+  root: 'src', // Root where index.tsx and index.html are located (src/kodoninja_frontend/src)
   build: {
-    outDir: '../../../dist', // Adjusted to match the expected path
+    outDir: '../../../dist', // Output to /home/kodoninja/kodoninja/dist
     emptyOutDir: true, // Ensure the output directory is emptied before build
   },
   server: {

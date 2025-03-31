@@ -1,17 +1,17 @@
 {
   "name": "kodoninja_frontend",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
+    "dev": "vite",
     "build": "vite build",
-    "start": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.8.2",
     "@dfinity/agent": "^2.4.0",
     "@emotion/react": "^11.11.4",

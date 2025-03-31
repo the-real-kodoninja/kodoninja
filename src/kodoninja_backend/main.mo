@@ -5,7 +5,7 @@ import List "mo:base/List";
 import Time "mo:base/Time";
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
-import Nat32 "mo:base/Nat32";
+import Iter "mo:base/Iter";
 
 actor {
   // Store users: username -> password
@@ -19,6 +19,19 @@ actor {
   // Store blogs: list of (id, username, title, content, timestamp)
   var blogs = List.nil<(Nat, Text, Text, Text, Time.Time)>();
   var nextBlogId: Nat = 0;
+  // Store goals: list of (id, username, title, description, progress, completed, timestamp)
+  var goals = List.nil<(Nat, Text, Text, Text, Nat, Bool, Time.Time)>();
+  var nextGoalId: Nat = 0;
+  // Store forum threads: list of (id, username, title, timestamp, messages)
+  var forumThreads = List.nil<(Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)>();
+  var nextThreadId: Nat = 0;
+  var nextMessageId: Nat = 0;
+  // Store tests: list of (id, username, title, questions, timestamp)
+  // question: (text, options, correctAnswerIndex)
+  var tests = List.nil<(Nat, Text, Text, List.List<(Text, List.List<Text>, Nat)>, Time.Time)>();
+  var nextTestId: Nat = 0;
+  // Store test results: list of (testId, username, score, timestamp)
+  var testResults = List.nil<(Nat, Text, Nat, Time.Time)>();
 
   // Register a new user
   public func register(username: Text, password: Text): async Bool {
@@ -58,14 +71,11 @@ actor {
 
   // Create a post with media
   public func createPost(username: Text, content: Text, mediaUrls: [Text]): async Nat {
-    let postId = Nat32.toNat(Nat32.fromNat(nextPostId)); // Convert to Nat
+    let postId = nextPostId;
     nextPostId += 1;
     let timestamp = Time.now();
-    posts := List.push(
-      (postId, username, timestamp, content, List.fromArray(mediaUrls), 0, List.nil<(Nat, Text, Text, List.List<Text>, Nat, List.List<(Text, Text, List.List<Text>)>)>()),
-      posts
-    );
-    return postId;
+    posts := List.push((postId, username, timestamp, content, List.fromArray(mediaUrls), 0, List.nil<(Nat, Text, Text, List.List<Text>, Nat, List.List<(Text, Text, List.List<Text>)>)>()), posts);
+    postId
   };
 
   // Like a post
@@ -87,13 +97,13 @@ actor {
 
   // Add a comment to a post
   public func addComment(postId: Nat, username: Text, comment: Text, mediaUrls: [Text]): async Nat {
-    let commentId = Nat32.toNat(Nat32.fromNat(nextCommentId)); // Convert to Nat
-    nextCommentId += 1;
     let postOpt = List.find(posts, func ((id, _, _, _, _, _, _): (Nat, Text, Time.Time, Text, List.List<Text>, Nat, List.List<(Nat, Text, Text, List.List<Text>, Nat, List.List<(Text, Text, List.List<Text>)>)>)): Bool {
       id == postId
     });
     switch (postOpt) {
       case (?(id, u, t, c, media, likes, comments)) {
+        let commentId = nextCommentId;
+        nextCommentId += 1;
         posts := List.filter(posts, func ((pId, _, _, _, _, _, _): (Nat, Text, Time.Time, Text, List.List<Text>, Nat, List.List<(Nat, Text, Text, List.List<Text>, Nat, List.List<(Text, Text, List.List<Text>)>)>)): Bool {
           pId != postId
         });
@@ -181,11 +191,11 @@ actor {
 
   // Create a blog
   public func createBlog(username: Text, title: Text, content: Text): async Nat {
-    let blogId = Nat32.toNat(Nat32.fromNat(nextBlogId)); // Convert to Nat
+    let blogId = nextBlogId;
     nextBlogId += 1;
     let timestamp = Time.now();
     blogs := List.push((blogId, username, title, content, timestamp), blogs);
-    return blogId;
+    blogId
   };
 
   // Update a blog
@@ -226,6 +236,215 @@ actor {
   // Get all blogs
   public query func getAllBlogs(): async [(Nat, Text, Text, Text, Time.Time)] {
     List.toArray(blogs)
+  };
+
+  // Create a goal
+  public func createGoal(username: Text, title: Text, description: Text): async Nat {
+    let goalId = nextGoalId;
+    nextGoalId += 1;
+    let timestamp = Time.now();
+    goals := List.push((goalId, username, title, description, 0, false, timestamp), goals);
+    goalId
+  };
+
+  // Update a goal
+  public func updateGoal(goalId: Nat, username: Text, title: Text, description: Text, progress: Nat, completed: Bool): async Bool {
+    let goal = List.find(goals, func ((id, _, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+      id == goalId
+    });
+    switch (goal) {
+      case (?(_, goalUsername, _, _, _, _, _)) {
+        if (goalUsername == username) {
+          goals := List.filter(goals, func ((id, _, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+            id != goalId
+          });
+          goals := List.push((goalId, username, title, description, progress, completed, Time.now()), goals);
+          return true;
+        };
+        return false;
+      };
+      case null { return false; };
+    };
+  };
+
+  // Get goal by ID
+  public query func getGoal(goalId: Nat): async ?(Nat, Text, Text, Text, Nat, Bool, Time.Time) {
+    List.find(goals, func ((id, _, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+      id == goalId
+    })
+  };
+
+  // Get goals by user
+  public query func getGoalsByUser(username: Text): async [(Nat, Text, Text, Text, Nat, Bool, Time.Time)] {
+    let userGoals = List.filter(goals, func ((_, goalUsername, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+      goalUsername == username
+    });
+    List.toArray(userGoals)
+  };
+
+  // Get all goals
+  public query func getAllGoals(): async [(Nat, Text, Text, Text, Nat, Bool, Time.Time)] {
+    List.toArray(goals)
+  };
+
+  // Create a forum thread
+  public func createForumThread(username: Text, title: Text): async Nat {
+    let threadId = nextThreadId;
+    nextThreadId += 1;
+    let timestamp = Time.now();
+    forumThreads := List.push((threadId, username, title, timestamp, List.nil<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>()), forumThreads);
+    threadId
+  };
+
+  // Post a message in a forum thread
+  public func postMessage(threadId: Nat, username: Text, content: Text): async Nat {
+    let threadOpt = List.find(forumThreads, func ((id, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+      id == threadId
+    });
+    switch (threadOpt) {
+      case (?(id, u, t, timestamp, messages)) {
+        let messageId = nextMessageId;
+        nextMessageId += 1;
+        forumThreads := List.filter(forumThreads, func ((tId, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+          tId != threadId
+        });
+        let updatedMessages = List.push((messageId, username, content, Time.now(), List.nil<(Text, Text, Time.Time)>()), messages);
+        forumThreads := List.push((id, u, t, timestamp, updatedMessages), forumThreads);
+        return messageId;
+      };
+      case null { return 0; };
+    };
+  };
+
+  // Reply to a message in a forum thread
+  public func replyToMessage(threadId: Nat, messageId: Nat, username: Text, content: Text): async Bool {
+    let threadOpt = List.find(forumThreads, func ((id, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+      id == threadId
+    });
+    switch (threadOpt) {
+      case (?(id, u, t, timestamp, messages)) {
+        let messageOpt = List.find(messages, func ((mId, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)): Bool {
+          mId == messageId
+        });
+        switch (messageOpt) {
+          case (?(mId, mUser, mContent, mTimestamp, replies)) {
+            forumThreads := List.filter(forumThreads, func ((tId, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+              tId != threadId
+            });
+            let updatedMessages = List.filter(messages, func ((mId2, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)): Bool {
+              mId2 != messageId
+            });
+            let updatedReplies = List.push((username, content, Time.now()), replies);
+            let updatedMessage = (mId, mUser, mContent, mTimestamp, updatedReplies);
+            let newMessages = List.push(updatedMessage, updatedMessages);
+            forumThreads := List.push((id, u, t, timestamp, newMessages), forumThreads);
+            return true;
+          };
+          case null { return false; };
+        };
+      };
+      case null { return false; };
+    };
+  };
+
+  // Get forum threads by user
+  public query func getForumThreadsByUser(username: Text): async [(Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)] {
+    let userThreads = List.filter(forumThreads, func ((_, threadUsername, _, _, _): (Nat, Text, Text, Time.Time, 🙂List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+      threadUsername == username
+    });
+    List.toArray(userThreads)
+  };
+
+  // Get all forum threads
+  public query func getAllForumThreads(): async [(Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)] {
+    List.toArray(forumThreads)
+  };
+
+  // Get forum thread by ID
+  public query func getForumThread(threadId: Nat): async ?(Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>) {
+    List.find(forumThreads, func ((id, _, _, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+      id == threadId
+    })
+  };
+
+  // Create a test
+  public func createTest(username: Text, title: Text, questions: [(Text, [Text], Nat)]): async Nat {
+    let testId = nextTestId;
+    nextTestId += 1;
+    let timestamp = Time.now();
+    tests := List.push((testId, username, title, List.fromArray(questions), timestamp), tests);
+    testId
+  };
+
+  // Submit test answers and get score
+  public func submitTest(testId: Nat, username: Text, answers: [Nat]): async Nat {
+    let testOpt = List.find(tests, func ((id, _, _, _, _): (Nat, Text, Text, List.List<(Text, List.List<Text>, Nat)>, Time.Time)): Bool {
+      id == testId
+    });
+    switch (testOpt) {
+      case (?(id, _, _, questions, _)) {
+        var score = 0;
+        let questionArray = List.toArray(questions);
+        for (i in Iter.range(0, questionArray.size() - 1)) {
+          if (i < answers.size() and answers[i] == questionArray[i].2) {
+            score += 1;
+          };
+        };
+        testResults := List.push((testId, username, score, Time.now()), testResults);
+        score
+      };
+      case null { 0 };
+    };
+  };
+
+  // Get tests by user
+  public query func getTestsByUser(username: Text): async [(Nat, Text, Text, List.List<(Text, List.List<Text>, Nat)>, Time.Time)] {
+    let userTests = List.filter(tests, func ((_, testUsername, _, _, _): (Nat, Text, Text, List.List<(Text, List.List<Text>, Nat)>, Time.Time)): Bool {
+      testUsername == username
+    });
+    List.toArray(userTests)
+  };
+
+  // Get test results for a user
+  public query func getTestResults(username: Text): async [(Nat, Text, Nat, Time.Time)] {
+    let userResults = List.filter(testResults, func ((_, resultUsername, _, _): (Nat, Text, Nat, Time.Time)): Bool {
+      resultUsername == username
+    });
+    List.toArray(userResults)
+  };
+
+  // Recommend blogs based on user's goals
+  public query func recommendBlogs(username: Text): async [(Nat, Text, Text, Text, Time.Time)] {
+    let userGoals = List.filter(goals, func ((_, goalUsername, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+      goalUsername == username
+    });
+    let goalTitles = List.map(userGoals, func ((_, _, title, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Text { title });
+    let recommendedBlogs = List.filter(blogs, func ((_, _, blogTitle, _, _): (Nat, Text, Text, Text, Time.Time)): Bool {
+      for (goalTitle in Iter.fromList(goalTitles)) {
+        if (Text.contains(blogTitle, #text goalTitle)) {
+          return true;
+        };
+      };
+      false
+    });
+    List.toArray(recommendedBlogs)
+  };
+
+  // Recommend forum threads based on user's goals
+  public query func recommendForumThreads(username: Text): async [(Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)] {
+    let userGoals = List.filter(goals, func ((_, goalUsername, _, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Bool {
+      goalUsername == username
+    });
+    let goalTitles = List.map(userGoals, func ((_, _, title, _, _, _, _): (Nat, Text, Text, Text, Nat, Bool, Time.Time)): Text { title });
+    let recommendedThreads = List.filter(forumThreads, func ((_, _, threadTitle, _, _): (Nat, Text, Text, Time.Time, List.List<(Nat, Text, Text, Time.Time, List.List<(Text, Text, Time.Time)>)>)): Bool {
+      for (goalTitle in Iter.fromList(goalTitles)) {
+        if (Text.contains(threadTitle, #text goalTitle)) {
+          return true;
+        };
+      };
+      false
+    });
+    List.toArray(recommendedThreads)
   };
 
   // Greet function (for testing)

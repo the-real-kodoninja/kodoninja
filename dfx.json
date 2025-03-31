@@ -4,10 +4,6 @@
       "main": "src/kodoninja_backend/main.mo",
       "type": "motoko"
     },
-    "kodoninja_assets": {
-      "main": "src/kodoninja_assets/main.mo",
-      "type": "motoko"
-    },
     "kodoninja_frontend": {
       "dependencies": ["kodoninja_backend"],
       "frontend": {
@@ -15,6 +11,10 @@
       },
       "source": ["dist"],
       "type": "assets"
+    },
+    "kodoninja_assets": {
+      "main": "src/kodoninja_assets/main.mo",
+      "type": "motoko"
     }
   },
   "defaults": {

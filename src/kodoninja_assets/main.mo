@@ -1,36 +1,49 @@
 // src/kodoninja_assets/main.mo
+import Array "mo:base/Array";
 import Blob "mo:base/Blob";
-import Map "mo:base/HashMap";
-import Text "mo:base/Text";
+import Cycles "mo:base/ExperimentalCycles";
+import Error "mo:base/Error";
+import HashMap "mo:base/HashMap";
+import Iter "mo:base/Iter";
 import Nat "mo:base/Nat";
+import Nat32 "mo:base/Nat32";
 import Principal "mo:base/Principal";
+import Text "mo:base/Text";
 
 actor {
-  // Store assets: assetId -> (owner, blob)
-  let assets = Map.HashMap<Nat, (Principal, Blob)>(0, Nat.equal, func (n) { n });
-  var nextAssetId: Nat = 0;
+  // Remove 'stable' keyword since HashMap is not a stable type
+  private var store = HashMap.HashMap<Text, Blob>(0, Text.equal, Text.hash);
 
-  // Upload an asset
-  public shared({ caller }) func uploadAsset(data: Blob): async Nat {
-    let assetId = nextAssetId;
-    nextAssetId += 1;
-    assets.put(assetId, (caller, data));
-    assetId
+  // Stable storage for upgrade hooks
+  private stable var storeEntries : [(Text, Blob)] = [];
+
+  // Pre-upgrade hook to serialize HashMap into stable storage
+  system func preupgrade() {
+    storeEntries := Iter.toArray(store.entries());
   };
 
-  // Get an asset
-  public query func getAsset(assetId: Nat): async ?Blob {
-    switch (assets.get(assetId)) {
-      case (?(owner, data)) { ?data };
-      case null { null };
-    }
+  // Post-upgrade hook to deserialize stable storage back into HashMap
+  system func postupgrade() {
+    store := HashMap.fromIter<Text, Blob>(storeEntries.vals(), 0, Text.equal, Text.hash);
+    storeEntries := []; // Clear stable storage after upgrade
   };
 
-  // Check if the caller is the owner of the asset
-  public query({ caller }) func isAssetOwner(assetId: Nat): async Bool {
-    switch (assets.get(assetId)) {
-      case (?(owner, _)) { owner == caller };
-      case null { false };
-    }
+  public func storeAsset(key : Text, content : Blob) : async () {
+    store.put(key, content);
+  };
+
+  public query func getAsset(key : Text) : async ?Blob {
+    store.get(key)
+  };
+
+  public query func getAssetSize() : async Nat32 {
+    Nat32.fromNat(store.size())
+  };
+
+  // Fixed <system> annotation syntax
+  public shared func wallet_receive() : async <system> () {
+    let amount = Cycles.available();
+    let accepted = Cycles.accept(amount);
+    assert (accepted == amount);
   };
 };
