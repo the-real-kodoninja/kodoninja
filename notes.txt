@@ -1,0 +1,163 @@
+along with the next steps, we should be able to post photos max 4 at a time shown on the post for instance there will be 4 photos then in the center it'll say +2 indicating there are 6 total for example. video upload, etc. YouTube links, x links, Facebook links, post links etc.
+
+for commenting people should be able to like a comment, then replies to comments, with text, gifs, emoji, images etc.  ...  yes I like the idea for goals etc
+
+
+
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ 
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ npm run build
+
+> kodoninja_frontend@1.0.0 build
+> vite build
+
+vite v6.2.3 building for production...
+✓ 0 modules transformed.
+✗ Build failed in 464ms
+error during build:
+Could not resolve entry module "src/kodoninja_frontend/src/index.html".
+    at getRollupError (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/parseAst.js:397:41)
+    at error (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/parseAst.js:393:42)
+    at ModuleLoader.loadEntryModule (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/node-entry.js:21275:20)
+    at async Promise.all (index 0)
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ npm uninstall react react-dom
+
+added 1 package, and audited 334 packages in 1m
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ npm install react@18 react-dom@18
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: kodoninja_frontend@1.0.0
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn     @ark-ui/react@"5.3.1" from @chakra-ui/react@3.14.2
+npm warn     node_modules/@chakra-ui/react
+npm warn   10 more (@chakra-ui/react, @emotion/react, @emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.1.0" from react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn   6 more (@chakra-ui/react, @zag-js/react, framer-motion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: kodoninja_frontend@1.0.0
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn     @ark-ui/react@"5.3.1" from @chakra-ui/react@3.14.2
+npm warn     node_modules/@chakra-ui/react
+npm warn   10 more (@chakra-ui/react, @emotion/react, @emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.1.0" from react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn   6 more (@chakra-ui/react, @zag-js/react, framer-motion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: kodoninja_frontend@1.0.0
+npm warn Found: react@19.1.0
+npm warn node_modules/react
+npm warn   peer react@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn     @ark-ui/react@"5.3.1" from @chakra-ui/react@3.14.2
+npm warn     node_modules/@chakra-ui/react
+npm warn   10 more (@chakra-ui/react, @emotion/react, @emotion/styled, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.1.0" from react-dom@19.1.0
+npm warn node_modules/react-dom
+npm warn   peer react-dom@">=18.0.0" from @ark-ui/react@5.3.1
+npm warn   node_modules/@ark-ui/react
+npm warn   6 more (@chakra-ui/react, @zag-js/react, framer-motion, ...)
+
+added 1 package, changed 3 packages, and audited 335 packages in 6m
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ npm install react-quill@2.0.0 @types/react-quill
+
+npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/@types%2freact-quill - Not found
+npm error 404
+npm error 404  '@types/react-quill@*' is not in this registry.
+npm error 404
+npm error 404 Note that you can also install from a
+npm error 404 tarball, folder, http url, or git url.
+npm error A complete log of this run can be found in: /home/kodoninja/.npm/_logs/2025-03-30T23_22_16_450Z-debug-0.log
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ 
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ nano src/components/Post.tsx
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$ npm run build
+dfx deploy
+
+> kodoninja_frontend@1.0.0 build
+> vite build
+
+vite v6.2.3 building for production...
+✓ 0 modules transformed.
+✗ Build failed in 129ms
+error during build:
+Could not resolve entry module "src/kodoninja_frontend/src/index.html".
+    at getRollupError (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/parseAst.js:397:41)
+    at error (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/parseAst.js:393:42)
+    at ModuleLoader.loadEntryModule (file:///home/kodoninja/kodoninja/kodoninja/src/kodoninja_frontend/node_modules/rollup/dist/es/shared/node-entry.js:21275:20)
+    at async Promise.all (index 0)
+Deploying all canisters.
+All canisters have already been created.
+Error: Failed while trying to deploy canisters.
+Caused by: Failed to build all canisters.
+Caused by: Failed while trying to build all canisters.
+Caused by: The build step failed for canister 'bkyz2-fmaaa-aaaaa-qaaaq-cai' (kodoninja_backend)
+Caused by: Failed to build Motoko canister 'kodoninja_backend'.
+Caused by: Failed to compile Motoko.
+Caused by: Failed to run 'moc'.
+Caused by: The command 'cd "/home/kodoninja/kodoninja/kodoninja" && "/home/kodoninja/.cache/dfinity/versions/0.25.1/moc" "/home/kodoninja/kodoninja/kodoninja/src/kodoninja_backend/main.mo" "-o" "/home/kodoninja/kodoninja/kodoninja/.dfx/local/canisters/kodoninja_backend/kodoninja_backend.wasm" "-c" "--debug" "--idl" "--stable-types" "--public-metadata" "candid:service" "--public-metadata" "candid:args" "--actor-idl" "/home/kodoninja/kodoninja/kodoninja/.dfx/local/canisters/idl/" "--actor-alias" "kodoninja_backend" "bkyz2-fmaaa-aaaaa-qaaaq-cai" "--actor-alias" "kodoninja_frontend" "bd3sg-teaaa-aaaaa-qaaba-cai" "--package" "base" "/home/kodoninja/.cache/dfinity/versions/0.25.1/base"' failed with exit status 'exit status: 1'.
+Stdout:
+
+Stderr:
+/home/kodoninja/kodoninja/kodoninja/src/kodoninja_backend/main.mo:71.18-73.11: type error [M0098], cannot implicitly instantiate function of type
+  <T, U>(List<T>, T -> U) -> List<U>
+to argument of type
+  (List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>,
+   ((Nat, Text, Time, Text, Nat, List<(Text, Text)>)) ->
+     (Nat, Text, Time, Text, Nat, List<(Text, Text)>))
+to produce result of type
+  ?((Nat, Text, Time, Text, Nat, List<(Text, Text)>),
+    List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>)
+because no instantiation of T__93, U__4 makes
+  (List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>,
+   ((Nat, Text, Time, Text, Nat, List<(Text, Text)>)) ->
+     (Nat, Text, Time, Text, Nat, List<(Text, Text)>))  <: 
+    (List<T__93>, T__93 -> U__4)
+and
+  List<U__4>  <: 
+    ?((Nat, Text, Time, Text, Nat, List<(Text, Text)>),
+      List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>)
+/home/kodoninja/kodoninja/kodoninja/src/kodoninja_backend/main.mo:87.18-89.11: type error [M0098], cannot implicitly instantiate function of type
+  <T, U>(List<T>, T -> U) -> List<U>
+to argument of type
+  (List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>,
+   ((Nat, Text, Time, Text, Nat, List<(Text, Text)>)) ->
+     (Nat, Text, Time, Text, Nat, List<(Text, Text)>))
+to produce result of type
+  ?((Nat, Text, Time, Text, Nat, List<(Text, Text)>),
+    List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>)
+because no instantiation of T__97, U__5 makes
+  (List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>,
+   ((Nat, Text, Time, Text, Nat, List<(Text, Text)>)) ->
+     (Nat, Text, Time, Text, Nat, List<(Text, Text)>))  <: 
+    (List<T__97>, T__97 -> U__5)
+and
+  List<U__5>  <: 
+    ?((Nat, Text, Time, Text, Nat, List<(Text, Text)>),
+      List<(Nat, Text, Time, Text, Nat, List<(Text, Text)>)>)
+
+kodoninja@penguin:~/kodoninja/kodoninja/src/kodoninja_frontend$
