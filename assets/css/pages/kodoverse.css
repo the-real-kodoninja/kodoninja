@@ -1,0 +1,109 @@
+.kodoverse {
+    padding: 50px 0;
+}
+
+.kodoverse h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.kodoverse p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.users h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.user-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+}
+
+.user-card .profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid var(--dark-red);
+}
+
+.user-card .username {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--onyx);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.modal-profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid var(--dark-red);
+}
+
+.profile-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}

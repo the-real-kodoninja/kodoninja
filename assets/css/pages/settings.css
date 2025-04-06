@@ -1,0 +1,28 @@
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+form button {
+    padding: 10px 20px;
+    background: var(--dark-red);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
