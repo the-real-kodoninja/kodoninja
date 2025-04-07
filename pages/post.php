@@ -1,113 +1,71 @@
 <?php
-declare(strict_types=1);
-require_once 'includes/core.php';
+require_once BASE_PATH . 'includes/core.php';
+require_once BASE_PATH . 'includes/db.php';
 
-function render_post(): void {
-    render_core_head('Create a Post', [], [
-        'assets/js/pages/post.js'
-    ]);
-    ?>
-    <div data-page="post">
-        <div class="container">
-            <h1>Create a Post</h1>
-            <form action="submit_post.php" method="POST" enctype="multipart/form-data">
-                <div class="post-type">
-                    <label for="type">Type:</label>
-                    <select name="type" id="type">
-                        <option value="blog">Blog</option>
-                        <option value="goal">Goal</option>
-                        <option value="thought">Thought</option>
-                    </select>
-                </div>
-                <div class="post-actions">
-                    <button type="button" id="toggle-preview">Preview</button>
-                    <button type="button" id="nimbus-ai-btn">Nimbus.ai ✨</button>
-                </div>
-                <div class="post-editor">
-                    <div class="toolbar">
-                        <button class="toolbar-btn" data-command="bold" title="Bold">B</button>
-                        <button class="toolbar-btn" data-command="italic" title="Italic">I</button>
-                        <button class="toolbar-btn" data-command="underline" title="Underline">U</button>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">Text</button>
-                            <div class="dropdown-menu">
-                                <button class="toolbar-btn" data-command="formatBlock:h1">H1</button>
-                                <button class="toolbar-btn" data-command="formatBlock:h2">H2</button>
-                                <button class="toolbar-btn" data-command="formatBlock:p">Paragraph</button>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">Align</button>
-                            <div class="dropdown-menu">
-                                <button class="toolbar-btn" data-command="justifyLeft">Left</button>
-                                <button class="toolbar-btn" data-command="justifyCenter">Center</button>
-                                <button class="toolbar-btn" data-command="justifyRight">Right</button>
-                                <button class="toolbar-btn" data-command="justifyFull">Justify</button>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">Lists</button>
-                            <div class="dropdown-menu">
-                                <button class="toolbar-btn" data-command="insertUnorderedList">Bullet List</button>
-                                <button class="toolbar-btn" data-command="insertOrderedList">Numbered List</button>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">Media</button>
-                            <div class="dropdown-menu">
-                                <button class="toolbar-btn" data-command="createLink">Link</button>
-                                <button class="toolbar-btn" data-command="insertImage">Image</button>
-                                <button class="toolbar-btn" data-command="insertVideo">Video</button>
-                            </div>
-                        </div>
-                        <button class="toolbar-btn" id="emoji-btn">😊</button>
-                        <div class="emoji-picker" id="emoji-picker" style="display: none;">
-                            <span class="emoji" data-emoji="😊">😊</span>
-                            <span class="emoji" data-emoji="👍">👍</span>
-                            <span class="emoji" data-emoji="❤️">❤️</span>
-                            <span class="emoji" data-emoji="🚀">🚀</span>
-                        </div>
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">⋮</button>
-                            <div class="dropdown-menu">
-                                <button id="save-draft">Save Draft</button>
-                                <button id="edit-mode">Edit Mode</button>
-                                <button id="contribute">Contribute</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="editor-content">
-                        <div contenteditable="true" id="editor" placeholder="Share your journey, goals, or insights...">
-                            Share your journey, goals, or insights...
-                        </div>
-                    </div>
-                    <div id="post-preview" style="display: none;">
-                        <div class="preview-content"></div>
-                    </div>
-                    <input type="hidden" name="content" id="content">
-                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
-                    <input type="file" id="video-upload" accept="video/*" style="display: none;">
-                </div>
-                <button type="submit" class="post-btn">Post Now</button>
-            </form>
-            <!-- Nimbus.ai Modal -->
-            <div class="modal" id="nimbus-ai-modal" style="display: none;">
-                <div class="modal-content">
-                    <span class="modal-close">×</span>
-                    <h3>Nimbus.ai</h3>
-                    <div class="ai-options">
-                        <button class="ai-option" data-action="suggest-title">Suggest a Title</button>
-                        <button class="ai-option" data-action="expand-idea">Expand Idea</button>
-                        <button class="ai-option" data-action="motivational-quote">Motivational Quote</button>
-                    </div>
-                    <div id="ai-output"></div>
-                    <button id="ai-insert" style="display: none;">Insert</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-    render_core_footer();
+if (!isLoggedIn()) {
+    redirect('/?page=login');
 }
 
-render_post();
+$page_title = 'Create a Post - Kodoninja';
+include BASE_PATH . 'components/header.php';
+
+// Check if this is a contribution to an existing post
+$contribute_to = isset($_GET['contribute_to']) ? (int)$_GET['contribute_to'] : null;
+$contribute_type = isset($_GET['type']) ? $_GET['type'] : null;
+
+if ($contribute_to && $contribute_type) {
+    $table = $contribute_type === 'blog' ? 'blog' : ($contribute_type === 'forum' ? 'forum' : 'goal');
+    $id_field = $contribute_type === 'blog' ? 'bid' : ($contribute_type === 'forum' ? 'fid' : 'gid');
+    $content = $db->fetch("SELECT * FROM $table WHERE $id_field = ?", [$contribute_to]);
+    if (!$content) {
+        redirect('/?page=feed');
+    }
+}
+?>
+
+<section class="post-creation">
+    <h1><?php echo $contribute_to ? 'Contribute to ' . ucfirst($contribute_type) : 'Create a Post'; ?></h1>
+    <form id="post-form" action="/api/create_post.php" method="POST">
+        <input type="hidden" name="contribute_to" value="<?php echo $contribute_to; ?>">
+        <input type="hidden" name="contribute_type" value="<?php echo $contribute_type; ?>">
+        <div class="post-type">
+            <label for="post-type">Type:</label>
+            <select id="post-type" name="type">
+                <option value="post" <?php echo !$contribute_to ? '' : 'disabled'; ?>>Post</option>
+                <option value="blog" <?php echo $contribute_type === 'blog' ? 'selected' : ''; ?>>Blog</option>
+                <option value="forum" <?php echo $contribute_type === 'forum' ? 'selected' : ''; ?>>Forum</option>
+                <option value="goal" <?php echo $contribute_type === 'goal' ? 'selected' : ''; ?>>Goal</option>
+            </select>
+        </div>
+        <div class="post-actions">
+            <button type="button" class="preview-btn">Preview</button>
+            <button type="button" class="save-draft-btn">Save Draft</button>
+            <button type="button" class="nimbus-btn">Nimbus.ai ✨</button>
+        </div>
+        <div class="wysiwyg-toolbar">
+            <button type="button" class="wysiwyg-btn" data-command="bold">B</button>
+            <button type="button" class="wysiwyg-btn" data-command="italic">I</button>
+            <button type="button" class="wysiwyg-btn" data-command="underline">U</button>
+            <button type="button" class="wysiwyg-btn">Text</button>
+            <button type="button" class="wysiwyg-btn">Align</button>
+            <button type="button" class="wysiwyg-btn">Lists</button>
+            <button type="button" class="wysiwyg-btn">Media</button>
+            <button type="button" class="wysiwyg-btn">😊</button>
+            <button type="button" class="wysiwyg-btn">⋮</button>
+        </div>
+        <div class="wysiwyg-editor" contenteditable="true" id="post-editor">
+            <?php if ($contribute_to): ?>
+                <p>Contributing to: <?php echo sanitize($content['title']); ?></p>
+            <?php else: ?>
+                <p>Share your journey, goals, or insights...</p>
+            <?php endif; ?>
+        </div>
+        <input type="hidden" name="content" id="post-content">
+        <div class="nft-option">
+            <label><input type="checkbox" name="mint_nft"> Mint as NFT (stored on Motoko)</label>
+        </div>
+        <button type="submit" class="submit-btn">Post Now</button>
+    </form>
+</section>
+
+<?php include BASE_PATH . 'components/footer.php'; ?>

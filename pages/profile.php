@@ -1,70 +1,84 @@
 <?php
-declare(strict_types=1);
-require_once 'includes/core.php';
-require_once 'includes/db.php';
+require_once BASE_PATH . 'includes/core.php';
+require_once BASE_PATH . 'includes/db.php';
 
-function render_profile(): void {
-    global $db;
-    // Mock user data (replace with actual user data after authentication)
-    $user = [
-        'username' => 'kodoninja',
-        'bio' => 'Self-help enthusiast | Ninja coder',
-        'posts' => 42,
-        'followers' => 128,
-        'following' => 56
-    ];
+$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : getCurrentUserId();
 
-    render_core_head('Profile', [], [
-        'assets/js/pages/profile.js'
-    ]);
-    ?>
-    <div data-page="profile">
-        <div class="container">
-            <div class="profile-header">
-                <img src="assets/images/profiles/kodoninja.jpg" alt="User" class="profile-pic">
-                <h2><?php echo htmlspecialchars($user['username']); ?></h2>
-                <p class="bio"><?php echo htmlspecialchars($user['bio']); ?></p>
-                <button class="edit-bio-btn">Edit Bio</button>
-                <form class="edit-bio-form" style="display: none;">
-                    <textarea name="bio" placeholder="Update your bio..."><?php echo htmlspecialchars($user['bio']); ?></textarea>
-                    <button type="submit">Save</button>
-                </form>
-            </div>
-            <div class="profile-stats">
-                <p>Posts: <?php echo $user['posts']; ?></p>
-                <p>Followers: <?php echo $user['followers']; ?></p>
-                <p>Following: <?php echo $user['following']; ?></p>
-            </div>
-            <div class="profile-content">
-                <div class="profile-section">
-                    <h3>My Blogs</h3>
-                    <?php
-                    $userBlogs = $db->getAllBlogs(0, 3); // Fetch user's blogs (mocked for now)
-                    while ($blog = $userBlogs->fetchArray(SQLITE3_ASSOC)):
-                        if ($blog['author'] === $user['username']):
-                    ?>
-                        <div class="profile-blog">
-                            <h4><?php echo htmlspecialchars($blog['title']); ?></h4>
-                            <p class="blog-meta"><?php echo date('M d, Y', strtotime($blog['created_at'])); ?></p>
-                        </div>
-                    <?php
-                        endif;
-                    endwhile;
-                    ?>
-                </div>
-                <div class="profile-section">
-                    <h3>My Goals</h3>
-                    <!-- Mock goals (replace with actual data later) -->
-                    <div class="goal">
-                        <h4>Run a Marathon</h4>
-                        <p>Progress: 50%</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-    render_core_footer();
+if (!$uid) {
+    redirect('/?page=login');
 }
 
-render_profile();
+$user = getUserById($db, $uid);
+if (!$user) {
+    die("User not found");
+}
+
+$posts_query = "SELECT * FROM user_post WHERE uid = $uid AND remove = '0' AND hide = '0' ORDER BY date DESC LIMIT 5";
+$posts_result = $db->query($posts_query);
+
+$blogs_query = "SELECT * FROM blog WHERE uid = $uid AND approved = 'y' AND remove = '0' AND hide = '0' ORDER BY date DESC LIMIT 5";
+$blogs_result = $db->query($blogs_query);
+
+$goals_query = "SELECT * FROM goal WHERE uid = $uid AND remove = '0' AND hide = '0' ORDER BY date DESC LIMIT 5";
+$goals_result = $db->query($goals_query);
+
+$forums_query = "SELECT * FROM forum WHERE uid = $uid AND remove = '0' AND hide = '0' ORDER BY date DESC LIMIT 5";
+$forums_result = $db->query($forums_query);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo htmlspecialchars($user['username']); ?>'s Profile - Kodoninja</title>
+    <link rel="stylesheet" href="../assets/css/core.css?v=1">
+</head>
+<body>
+    <div class="container">
+        <h1><?php echo htmlspecialchars($user['username']); ?>'s Profile</h1>
+        <button id="follow-btn" data-uid="<?php echo $uid; ?>">
+            <?php
+            $current_uid = getCurrentUserId();
+            if ($current_uid && $current_uid != $uid) {
+                $follow_query = "SELECT * FROM connections WHERE uid = $current_uid AND cuid = $uid";
+                $follow_result = $db->query($follow_query);
+                echo $follow_result->num_rows > 0 ? 'Unfollow' : 'Follow';
+            }
+            ?>
+        </button>
+        <h2>Recent Posts</h2>
+        <div id="posts">
+            <?php while ($post = $posts_result->fetch_assoc()): ?>
+                <div class="user-post">
+                    <h3><a href="?page=post&pid=<?php echo $post['pid']; ?>"><?php echo htmlspecialchars($post['title']); ?></a></h3>
+                </div>
+            <?php endwhile; ?>
+        </div>
+        <h2>Recent Blogs</h2>
+        <div id="blogs">
+            <?php while ($blog = $blogs_result->fetch_assoc()): ?>
+                <div class="blog-post">
+                    <h3><a href="?page=blog&bid=<?php echo $blog['bid']; ?>"><?php echo htmlspecialchars($blog['title']); ?></a></h3>
+                </div>
+            <?php endwhile; ?>
+        </div>
+        <h2>Recent Goals</h2>
+        <div id="goals">
+            <?php while ($goal = $goals_result->fetch_assoc()): ?>
+                <div class="goal-post">
+                    <h3><a href="?page=goal&gid=<?php echo $goal['gid']; ?>"><?php echo htmlspecialchars($goal['title']); ?></a></h3>
+                </div>
+            <?php endwhile; ?>
+        </div>
+        <h2>Recent Forum Posts</h2>
+        <div id="forums">
+            <?php while ($forum = $forums_result->fetch_assoc()): ?>
+                <div class="forum-post">
+                    <h3><a href="?page=forum&fid=<?php echo $forum['fid']; ?>"><?php echo htmlspecialchars($forum['title']); ?></a></h3>
+                </div>
+            <?php endwhile; ?>
+        </div>
+    </div>
+    <script src="../assets/js/pages/profile.js?v=1"></script>
+</body>
+</html>

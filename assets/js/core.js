@@ -1,98 +1,109 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Prevent duplicate event listeners by ensuring this only runs once
-    if (window.kodoninjaCoreInitialized) return;
-    window.kodoninjaCoreInitialized = true;
-
-    // Theme toggle
-    const toggle = document.getElementById('theme-toggle');
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    if (toggle) {
-        toggle.addEventListener('click', () => {
-            body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
-            toggle.textContent = body.dataset.theme === 'dark' ? '🌙' : '☀️';
-        });
-    }
+    let currentTheme = localStorage.getItem('theme') || 'dark-mode';
 
-    // Sidebar toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    if (menuToggle && sidebar) {
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+    body.classList.add(currentTheme);
+    themeToggle.textContent = currentTheme === 'dark-mode' ? '🌙' : currentTheme === 'light-mode' ? '☀️' : '⚪';
 
-        // Close sidebar when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-    }
-
-    // Accordion toggle
-    const accordionToggles = document.querySelectorAll('.accordion-toggle');
-    accordionToggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const content = toggle.nextElementSibling;
-            content.classList.toggle('active');
-        });
+    themeToggle.addEventListener('click', () => {
+        if (currentTheme === 'dark-mode') {
+            currentTheme = 'light-mode';
+            themeToggle.textContent = '☀️';
+        } else if (currentTheme === 'light-mode') {
+            currentTheme = 'white-mode';
+            themeToggle.textContent = '⚪';
+        } else {
+            currentTheme = 'dark-mode';
+            themeToggle.textContent = '🌙';
+        }
+        body.className = currentTheme;
+        localStorage.setItem('theme', currentTheme);
     });
 
-    // Search dropdown
-    const searchBar = document.getElementById('search-bar');
+    // Menu Toggle
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const menuDropdown = document.getElementById('menu-dropdown');
+
+    menuToggleBtn.addEventListener('click', () => {
+        menuDropdown.classList.toggle('active');
+    });
+
+    // Accordion
+    const accordionHeader = document.querySelector('.accordion-header');
+    const accordionContent = document.querySelector('.accordion-content');
+
+    // Ensure accordion is collapsed initially
+    accordionContent.classList.remove('active');
+    accordionHeader.textContent = accordionHeader.textContent.replace('▲', '▼');
+
+    accordionHeader.addEventListener('click', () => {
+        accordionContent.classList.toggle('active');
+        accordionHeader.textContent = accordionContent.classList.contains('active') ? accordionHeader.textContent.replace('▼', '▲') : accordionHeader.textContent.replace('▲', '▼');
+    });
+
+    // Search Bar Expand/Retract
+    const searchInput = document.getElementById('search-input');
     const searchDropdown = document.getElementById('search-dropdown');
-    if (searchBar && searchDropdown) {
-        searchBar.addEventListener('focus', () => {
-            searchDropdown.style.display = 'block';
-        });
 
-        searchBar.addEventListener('blur', () => {
-            setTimeout(() => {
-                searchDropdown.style.display = 'none';
-            }, 200);
-        });
+    searchInput.addEventListener('focus', () => {
+    searchInput.parentElement.parentElement.style.maxWidth = '600px';
+    searchDropdown.classList.add('active');
+    // Simulate Pinterest/Facebook-like search suggestions
+    searchDropdown.innerHTML = `
+        <a href="/?page=profile&q=${searchInput.value}"><span>👤</span> Users: ${searchInput.value || 'Search for users'}</a>
+        <a href="/?page=blogs&q=${searchInput.value}"><span>📝</span> Blogs: ${searchInput.value || 'Search for blogs'}</a>
+        <a href="/?page=goals&q=${searchInput.value}"><span>🎯</span> Goals: ${searchInput.value || 'Search for goals'}</a>
+        <a href="/?page=forums&q=${searchInput.value}"><span>💬</span> Forums: ${searchInput.value || 'Search for forums'}</a>
+    `;
+});
+
+searchInput.addEventListener('blur', () => {
+    searchInput.parentElement.parentElement.style.maxWidth = '400px';
+    setTimeout(() => {
+        searchDropdown.classList.remove('active');
+    }, 200);
+});
+
+searchInput.addEventListener('input', () => {
+    if (searchInput.value.trim() === '') {
+        searchDropdown.innerHTML = `
+            <a href="/?page=profile"><span>👤</span> Users: Search for users</a>
+            <a href="/?page=blogs"><span>📝</span> Blogs: Search for blogs</a>
+            <a href="/?page=goals"><span>🎯</span> Goals: Search for goals</a>
+            <a href="/?page=forums"><span>💬</span> Forums: Search for forums</a>
+        `;
+        searchDropdown.classList.add('active');
+    } else {
+        searchDropdown.classList.add('active');
+        searchDropdown.innerHTML = `
+            <a href="/?page=profile&q=${searchInput.value}"><span>👤</span> Users: ${searchInput.value}</a>
+            <a href="/?page=blogs&q=${searchInput.value}"><span>📝</span> Blogs: ${searchInput.value}</a>
+            <a href="/?page=goals&q=${searchInput.value}"><span>🎯</span> Goals: ${searchInput.value}</a>
+            <a href="/?page=forums&q=${searchInput.value}"><span>💬</span> Forums: ${searchInput.value}</a>
+        `;
     }
+});
 
-    // Notification dropdown
-    const notificationBtn = document.getElementById('notification-btn');
-    const notificationDropdown = document.getElementById('notification-dropdown');
-    if (notificationBtn && notificationDropdown) {
-        notificationBtn.addEventListener('click', () => {
-            notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
-        });
+    // Activity Feed
+    const activityList = document.getElementById('activity-list');
+    const fetchActivity = () => {
+        fetch('/api/activity_feed.php')
+            .then(response => response.json())
+            .then(data => {
+                activityList.innerHTML = '';
+                data.forEach(item => {
+                    const activityItem = document.createElement('div');
+                    activityItem.className = 'activity-item';
+                    activityItem.innerHTML = `
+                        <span>${item.username}</span> ${item.action} - <span>${new Date(item.timestamp).toLocaleTimeString()}</span>
+                    `;
+                    activityList.appendChild(activityItem);
+                });
+            });
+    };
 
-        document.addEventListener('click', (e) => {
-            if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
-                notificationDropdown.style.display = 'none';
-            }
-        });
-    }
-
-    // Update footer year
-    const footerYear = document.getElementById('footer-year');
-    if (footerYear) {
-        footerYear.textContent = new Date().getFullYear();
-    }
-
-    // Dynamically include all page-specific scripts
-    const scripts = [
-        'assets/js/pages/home.js',
-        'assets/js/pages/feed.js',
-        'assets/js/pages/post.js',
-        'assets/js/pages/kodoverse.js',
-        'assets/js/pages/profile.js',
-        'assets/js/pages/goals.js',
-        'assets/js/pages/blogs.js',
-        'assets/js/pages/messages.js',
-        'assets/js/pages/settings.js',
-        'assets/js/pages/privacy.js',
-        'assets/js/pages/terms.js'
-    ];
-
-    scripts.forEach(scriptSrc => {
-        const script = document.createElement('script');
-        script.src = scriptSrc + '?v=1';
-        script.async = true;
-        document.body.appendChild(script);
-    });
+    fetchActivity();
+    setInterval(fetchActivity, 30000); // Refresh every 30 seconds
 });

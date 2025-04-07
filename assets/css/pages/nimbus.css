@@ -1,0 +1,51 @@
+.nimbus-page {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.nimbus-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nimbus-chat {
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nimbus-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.nimbus-messages {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: var(--background);
+    border-radius: 4px;
+}
+
+.nimbus-input {
+    display: flex;
+    gap: 10px;
+}
+
+.nimbus-input textarea {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+.nimbus-input button {
+    padding: 8px 16px;
+}

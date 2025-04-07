@@ -1,0 +1,15 @@
+.min-h-screen {
+    background: none; /* Remove the gradient background */
+}
+
+.username-wrapper {
+    position: relative;
+}
+
+#username-availability {
+    min-height: 1.5rem; /* Ensure space for the availability message */
+}
+
+input {
+    transition: all 0.2s ease-in-out;
+}

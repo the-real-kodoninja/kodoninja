@@ -1,0 +1,36 @@
+button, .btn {
+    padding: 12px 24px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #a30000;
+}
+
+.cta-btn, .submit-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+}
+
+.post-btn, .login-btn, .register-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.nimbus-btn {
+    background-color: #4b0082;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.nimbus-btn:hover {
+    background-color: #5e00a1;
+}

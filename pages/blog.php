@@ -1,65 +1,72 @@
 <?php
-declare(strict_types=1);
-require_once 'includes/core.php';
-require_once 'includes/db.php';
+require_once BASE_PATH . 'includes/core.php';
+require_once BASE_PATH . 'includes/db.php';
 
-function render_blog(): void {
-    global $db;
-    $blogId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-    $blog = $db->getBlogById($blogId);
+$bid = isset($_GET['bid']) ? (int)$_GET['bid'] : 0;
 
-    if (!$blog) {
-        // Redirect to blogs page if blog not found
-        header('Location: ?page=blogs');
-        exit;
-    }
-
-    // Increment views
-    $db->incrementBlogViews($blogId);
-
-    render_core_head($blog['title'], [], [
-        'assets/js/pages/blog.js'
-    ]);
-    ?>
-    <div data-page="blog">
-        <div class="container">
-            <h1><?php echo htmlspecialchars($blog['title']); ?></h1>
-            <p class="blog-meta">By <?php echo htmlspecialchars($blog['author']); ?> | <?php echo number_format($blog['views']); ?> Views | <?php echo date('M d, Y', strtotime($blog['created_at'])); ?></p>
-            <?php if ($blog['image_path']): ?>
-                <div class="blog-image">
-                    <img src="<?php echo htmlspecialchars($blog['image_path']); ?>" alt="<?php echo htmlspecialchars($blog['title']); ?>">
-                </div>
-            <?php endif; ?>
-            <div class="blog-content">
-                <?php echo nl2br(htmlspecialchars($blog['content'])); ?>
-            </div>
-            <div class="blog-actions">
-                <button class="like-btn" data-blog-id="<?php echo $blog['id']; ?>">❤️ Like (<span class="like-count"><?php echo $db->getLikesCount($blog['id']); ?></span>)</button>
-            </div>
-
-            <!-- Comments Section -->
-            <section class="comments-section">
-                <h2>Comments</h2>
-                <form class="comment-form" data-blog-id="<?php echo $blog['id']; ?>">
-                    <textarea name="comment" placeholder="Add a comment..." required></textarea>
-                    <button type="submit">Post Comment</button>
-                </form>
-                <div class="comments-list">
-                    <?php
-                    $comments = $db->getComments($blog['id']);
-                    while ($comment = $comments->fetchArray(SQLITE3_ASSOC)):
-                    ?>
-                        <div class="comment">
-                            <p class="comment-meta">By <?php echo htmlspecialchars($comment['user_id']); ?> | <?php echo date('M d, Y', strtotime($comment['created_at'])); ?></p>
-                            <p><?php echo nl2br(htmlspecialchars($comment['comment'])); ?></p>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
-            </section>
-        </div>
-    </div>
-    <?php
-    render_core_footer();
+if ($bid == 0) {
+    die("Invalid blog ID");
 }
 
-render_blog();
+// Fetch blog
+$query = "SELECT b.*, u.username 
+          FROM blog b 
+          JOIN users u ON b.uid = u.id 
+          WHERE b.bid = $bid AND b.approved = 'y' AND b.remove = '0' AND b.hide = '0'";
+$result = $db->query($query);
+$blog = $result->fetch_assoc();
+
+if (!$blog) {
+    die("Blog not found");
+}
+
+// Increment views
+$update_views = "UPDATE blog SET views = views + 1 WHERE bid = $bid";
+$db->query($update_views);
+
+// Fetch comments
+$comments_query = "SELECT bc.*, u.username 
+                  FROM blog_comments bc 
+                  JOIN users u ON bc.uid = u.id 
+                  WHERE bc.bid = $bid 
+                  ORDER BY bc.date DESC";
+$comments_result = $db->query($comments_query);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo htmlspecialchars($blog['title']); ?> - Kodoninja</title>
+    <link rel="stylesheet" href="../assets/css/core.css?v=1">
+</head>
+<body>
+    <div class="container">
+        <h1><?php echo htmlspecialchars($blog['title']); ?></h1>
+        <p>Posted by <?php echo htmlspecialchars($blog['username']); ?> on <?php echo $blog['date']; ?></p>
+        <p>Views: <?php echo $blog['views']; ?></p>
+        <div class="blog-content">
+            <?php echo $blog['data']; ?>
+        </div>
+        <button class="like-btn" data-bid="<?php echo $blog['bid']; ?>">Like (<?php
+            $upvote_query = "SELECT COUNT(*) as likes FROM blog_upvote WHERE bid = " . $blog['bid'];
+            $upvote_result = $db->query($upvote_query);
+            echo $upvote_result->fetch_assoc()['likes'];
+        ?>)</button>
+        <h3>Comments</h3>
+        <div id="comments">
+            <?php while ($comment = $comments_result->fetch_assoc()): ?>
+                <div class="comment">
+                    <p><strong><?php echo htmlspecialchars($comment['username']); ?></strong> on <?php echo $comment['date']; ?>:</p>
+                    <p><?php echo htmlspecialchars($comment['comment']); ?></p>
+                </div>
+            <?php endwhile; ?>
+        </div>
+        <form id="comment-form" data-bid="<?php echo $blog['bid']; ?>">
+            <textarea name="comment" required></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+    </div>
+    <script src="../assets/js/pages/blog.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+.tests {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.tests h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-test-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 20px;
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border-radius: 4px;
+}
+
+.test-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.test-card {
+    background: var(--secondary-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.test-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.test-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+}

@@ -2,14 +2,22 @@
 header('Content-Type: application/json');
 require_once '../includes/db.php';
 
-$input = json_decode(file_get_contents('php://input'), true);
-$blogId = $input['blog_id'] ?? 0;
-$userId = $input['user_id'] ?? '';
-$comment = $input['comment'] ?? '';
+$bid = isset($_POST['bid']) ? (int)$_POST['bid'] : 0;
+$comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+$uid = 1; // Hardcoded for testing; implement user authentication
 
-if ($blogId && $userId && $comment) {
-    $db->addComment($blogId, $userId, $comment);
+if ($bid == 0 || empty($comment)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid input']);
+    exit;
+}
+
+$stmt = $db->prepare("INSERT INTO blog_comments (bid, uid, comment, date) VALUES (?, ?, ?, NOW())");
+$stmt->bind_param('iis', $bid, $uid, $comment);
+
+if ($stmt->execute()) {
     echo json_encode(['success' => true]);
 } else {
-    echo json_encode(['success' => false, 'error' => 'Invalid input']);
+    echo json_encode(['success' => false, 'message' => 'Failed to add comment']);
 }
+
+$stmt->close();

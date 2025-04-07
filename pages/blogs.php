@@ -1,98 +1,61 @@
 <?php
-declare(strict_types=1);
-require_once 'includes/core.php';
-require_once 'includes/db.php';
+require_once BASE_PATH . 'includes/core.php';
+require_once BASE_PATH . 'includes/db.php';
 
-function render_blogs(): void {
-    global $db;
-    render_core_head('Blogs', [], [
-        'assets/js/pages/blogs.js'
-    ]);
-    ?>
-    <div data-page="blogs">
-        <div class="container">
-            <h1>Explore Blogs on kodoninja</h1>
+$page_title = 'Blogs - Kodoninja';
+include BASE_PATH . 'components/header.php';
 
-            <!-- Most Viewed Blog -->
-            <section class="most-viewed-blog">
-                <h2>Most Viewed Blog</h2>
-                <?php
-                $mostViewed = $db->getMostViewedBlog();
-                if ($mostViewed):
-                ?>
-                    <div class="blog-card featured" data-blog-id="<?php echo $mostViewed['id']; ?>">
-                        <?php if ($mostViewed['image_path']): ?>
-                            <div class="blog-image">
-                                <img src="<?php echo htmlspecialchars($mostViewed['image_path']); ?>" alt="<?php echo htmlspecialchars($mostViewed['title']); ?>">
-                            </div>
-                        <?php endif; ?>
-                        <div class="blog-content">
-                            <h3><?php echo htmlspecialchars($mostViewed['title']); ?></h3>
-                            <p class="blog-meta">By <?php echo htmlspecialchars($mostViewed['author']); ?> | <?php echo number_format($mostViewed['views']); ?> Views | <?php echo date('M d, Y', strtotime($mostViewed['created_at'])); ?></p>
-                            <p class="blog-excerpt"><?php echo htmlspecialchars($mostViewed['excerpt']); ?></p>
-                            <a href="?page=blog&id=<?php echo $mostViewed['id']; ?>" class="read-more">Read More</a>
-                            <div class="blog-actions">
-                                <button class="like-btn">❤️ Like (<span class="like-count"><?php echo $db->getLikesCount($mostViewed['id']); ?></span>)</button>
-                            </div>
+$blogs = $db->fetchAll("SELECT b.*, u.username FROM blog b JOIN users u ON b.uid = u.id WHERE b.remove = '0' AND b.hide = '0' ORDER BY b.date DESC LIMIT 10");
+?>
+
+<section class="blogs">
+    <h1>Blogs</h1>
+    <?php if (isLoggedIn()): ?>
+        <a href="/?page=post&type=blog" class="create-blog-btn">Create a Blog</a>
+    <?php endif; ?>
+    <div class="blog-list">
+        <?php foreach ($blogs as $blog): ?>
+            <div class="blog-card">
+                <div class="blog-header">
+                    <img src="/assets/images/profiles/<?php echo $blog['username']; ?>.jpg" alt="Avatar" class="blog-avatar" onerror="this.src='/assets/images/default-avatar.png'">
+                    <div class="blog-meta">
+                        <a href="/?page=profile&uid=<?php echo $blog['uid']; ?>" class="username"><?php echo sanitize($blog['username']); ?></a>
+                        <span class="blog-time"><?php echo formatDate($blog['date']); ?></span>
+                    </div>
+                    <div class="blog-settings">
+                        <button class="settings-btn">⋮</button>
+                        <div class="settings-dropdown">
+                            <a href="/api/hide_post.php?id=<?php echo $blog['bid']; ?>&type=blog">Hide</a>
+                            <a href="/api/save_post.php?id=<?php echo $blog['bid']; ?>&type=blog">Save</a>
+                            <a href="/?page=lists&action=add&id=<?php echo $blog['bid']; ?>&type=blog">Add to List</a>
+                            <a href="/api/send_post.php?id=<?php echo $blog['bid']; ?>&type=blog">Send</a>
+                            <?php if ($blog['uid'] == getCurrentUser()['id']): ?>
+                                <a href="/api/delete_post.php?id=<?php echo $blog['bid']; ?>&type=blog">Delete</a>
+                            <?php endif; ?>
                         </div>
                     </div>
-                <?php endif; ?>
-            </section>
-
-            <!-- Trending Blogs -->
-            <section class="trending-blogs">
-                <h2>Trending Blogs</h2>
-                <div class="blog-grid">
-                    <?php
-                    $trendingBlogs = $db->getTrendingBlogs();
-                    while ($blog = $trendingBlogs->fetchArray(SQLITE3_ASSOC)):
-                    ?>
-                        <div class="blog-card" data-blog-id="<?php echo $blog['id']; ?>">
-                            <?php if ($blog['image_path']): ?>
-                                <div class="blog-image">
-                                    <img src="<?php echo htmlspecialchars($blog['image_path']); ?>" alt="<?php echo htmlspecialchars($blog['title']); ?>">
-                                </div>
-                            <?php endif; ?>
-                            <div class="blog-content">
-                                <h3><?php echo htmlspecialchars($blog['title']); ?></h3>
-                                <p class="blog-meta">By <?php echo htmlspecialchars($blog['author']); ?> | <?php echo number_format($blog['views']); ?> Views | <?php echo date('M d, Y', strtotime($blog['created_at'])); ?></p>
-                                <p class="blog-excerpt"><?php echo htmlspecialchars($blog['excerpt']); ?></p>
-                                <a href="?page=blog&id=<?php echo $blog['id']; ?>" class="read-more">Read More</a>
-                                <div class="blog-actions">
-                                    <button class="like-btn">❤️ Like (<span class="like-count"><?php echo $db->getLikesCount($blog['id']); ?></span>)</button>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
                 </div>
-            </section>
-
-            <!-- All Blogs -->
-            <section class="all-blogs">
-                <h2>All Blogs</h2>
-                <div class="blog-list" id="blog-list">
-                    <?php
-                    $allBlogs = $db->getAllBlogs();
-                    while ($blog = $allBlogs->fetchArray(SQLITE3_ASSOC)):
-                    ?>
-                        <div class="blog-item" data-blog-id="<?php echo $blog['id']; ?>">
-                            <div>
-                                <h3><?php echo htmlspecialchars($blog['title']); ?></h3>
-                                <p class="blog-meta">By <?php echo htmlspecialchars($blog['author']); ?> | <?php echo number_format($blog['views']); ?> Views | <?php echo date('M d, Y', strtotime($blog['created_at'])); ?></p>
-                            </div>
-                            <div class="blog-item-actions">
-                                <button class="like-btn">❤️ Like (<span class="like-count"><?php echo $db->getLikesCount($blog['id']); ?></span>)</button>
-                                <a href="?page=blog&id=<?php echo $blog['id']; ?>" class="read-more">Read More</a>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
+                <div class="blog-body">
+                    <h3><a href="/?page=blog&bid=<?php echo $blog['bid']; ?>"><?php echo sanitize($blog['title']); ?></a></h3>
+                    <p><?php echo highlightMentions(sanitize(substr($blog['data'], 0, 150))); ?>...</p>
+                    <?php if ($blog['nft_id']): ?>
+                        <span class="nft-badge">NFT</span>
+                    <?php endif; ?>
                 </div>
-                <button class="load-more" id="load-more">Load More</button>
-            </section>
-        </div>
+                <div class="blog-footer">
+                    <button class="like-btn" data-id="<?php echo $blog['bid']; ?>" data-type="blog"><?php echo $blog['v_count']; ?> Likes</button>
+                    <button class="comment-btn">Comments</button>
+                    <button class="share-btn">Share</button>
+                    <button class="contribute-btn">Contribute</button>
+                    <div class="comment-area" style="display: none;">
+                        <img src="/assets/images/default-avatar.png" alt="Avatar" class="comment-avatar">
+                        <textarea placeholder="Add a comment..."></textarea>
+                        <button class="comment-add-btn">+</button>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-    <?php
-    render_core_footer();
-}
+</section>
 
-render_blogs();
+<?php include BASE_PATH . 'components/footer.php'; ?>

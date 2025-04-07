@@ -1,0 +1,19 @@
+{
+  "name": "kodoninja",
+  "version": "1.0.0",
+  "description": "**KodoNinja isn't just a platform—it's a movement.** We're forging a revolutionary social blogging experience, empowering you with cutting-edge self-help tools, a vibrant community, and features designed for profound personal growth. Built with a lean, no-framework philosophy, we prioritize blazing-fast performance, limitless scalability, and true user ownership through groundbreaking NFT-powered data management. 💥",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i assets/css/input.css -o assets/css/styles.css",
+    "watch:css": "npx tailwindcss -i assets/css/input.css -o assets/css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
+  }
+}
